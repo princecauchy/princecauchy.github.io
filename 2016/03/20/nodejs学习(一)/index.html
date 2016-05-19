@@ -84,15 +84,16 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="柯西知识库">
-<meta property="og:url" content="http://blog.mathscs.com/index.html">
+<meta name="description" content="mongoose 增删改差，聚合mongoose 增删改差,聚合12345678910111213141516171819202122232425262728293031323334353637383940var mongoose = require(&quot;mongoose&quot;);var Schema = mongoose.Schema;function run(Param, Robot, Reques">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs快速掌握">
+<meta property="og:url" content="http://blog.mathscs.com/2016/03/20/nodejs学习(一)/index.html">
 <meta property="og:site_name" content="柯西知识库">
-<meta property="og:description">
+<meta property="og:description" content="mongoose 增删改差，聚合mongoose 增删改差,聚合12345678910111213141516171819202122232425262728293031323334353637383940var mongoose = require(&quot;mongoose&quot;);var Schema = mongoose.Schema;function run(Param, Robot, Reques">
+<meta property="og:updated_time" content="2016-05-19T16:00:04.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="柯西知识库">
-<meta name="twitter:description">
+<meta name="twitter:title" content="nodejs快速掌握">
+<meta name="twitter:description" content="mongoose 增删改差，聚合mongoose 增删改差,聚合12345678910111213141516171819202122232425262728293031323334353637383940var mongoose = require(&quot;mongoose&quot;);var Schema = mongoose.Schema;function run(Param, Robot, Reques">
 
 
 
@@ -110,7 +111,7 @@
   };
 </script>
 
-  <title> 柯西知识库 </title>
+  <title> nodejs快速掌握 | 柯西知识库 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +132,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,9 +219,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -242,10 +241,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/03/20/nodejs学习(一)/" itemprop="url">
-                  nodejs快速掌握
-                </a>
+                nodejs快速掌握
               
             
           </h1>
@@ -304,9 +300,7 @@
       
 
       
-        
-          
-            <h2 id="mongoose-增删改差，聚合"><a href="#mongoose-增删改差，聚合" class="headerlink" title="mongoose 增删改差，聚合"></a>mongoose 增删改差，聚合</h2><h3 id="mongoose-增删改差-聚合"><a href="#mongoose-增删改差-聚合" class="headerlink" title="mongoose 增删改差,聚合"></a>mongoose 增删改差,聚合</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>);</span><br><span class="line"><span class="keyword">var</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>) </span>&#123;</span><br><span class="line">    Response.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/json;charet=utf-8"</span>);</span><br><span class="line">    <span class="keyword">var</span> userSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">        <span class="string">"name"</span> : <span class="built_in">String</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="built_in">Number</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> conn = mongoose.createConnection(<span class="string">"mongodb://test:test@10.10.1.183:27017/test"</span>);</span><br><span class="line">    <span class="keyword">var</span> userModel = conn.model(<span class="string">"test"</span>, userSchema);</span><br><span class="line">    userModel.find(&#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        Response.end(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            data : data</span><br><span class="line">        &#125;));</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));                              </span><br><span class="line">        findOne();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> findOne = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        userModel.findOne(&#123;</span><br><span class="line">            age : <span class="number">26</span></span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">            aggregate();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> aggregate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        userModel.aggregate(&#123;</span><br><span class="line">            $group : &#123;</span><br><span class="line">                _id : <span class="string">"$name"</span>,</span><br><span class="line">                sumAge : &#123;</span><br><span class="line">                    $sum : <span class="string">"$age"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="mongoose-增删改差，聚合"><a href="#mongoose-增删改差，聚合" class="headerlink" title="mongoose 增删改差，聚合"></a>mongoose 增删改差，聚合</h2><h3 id="mongoose-增删改差-聚合"><a href="#mongoose-增删改差-聚合" class="headerlink" title="mongoose 增删改差,聚合"></a>mongoose 增删改差,聚合</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>);</span><br><span class="line"><span class="keyword">var</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>) </span>&#123;</span><br><span class="line">    Response.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/json;charet=utf-8"</span>);</span><br><span class="line">    <span class="keyword">var</span> userSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">        <span class="string">"name"</span> : <span class="built_in">String</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="built_in">Number</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> conn = mongoose.createConnection(<span class="string">"mongodb://test:test@10.10.1.183:27017/test"</span>);</span><br><span class="line">    <span class="keyword">var</span> userModel = conn.model(<span class="string">"test"</span>, userSchema);</span><br><span class="line">    userModel.find(&#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        Response.end(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            data : data</span><br><span class="line">        &#125;));</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));                              </span><br><span class="line">        findOne();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> findOne = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        userModel.findOne(&#123;</span><br><span class="line">            age : <span class="number">26</span></span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">            aggregate();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> aggregate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        userModel.aggregate(&#123;</span><br><span class="line">            $group : &#123;</span><br><span class="line">                _id : <span class="string">"$name"</span>,</span><br><span class="line">                sumAge : &#123;</span><br><span class="line">                    $sum : <span class="string">"$age"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="封装webservice接口"><a href="#封装webservice接口" class="headerlink" title="封装webservice接口"></a>封装webservice接口</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param,Robot,Request,Response,IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arg = Param.params;</span><br><span class="line">	<span class="keyword">var</span> option=&#123;</span><br><span class="line">		wsdl:<span class="string">"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?wsdl"</span>,</span><br><span class="line">		func:<span class="string">"WeatherWebService.WeatherWebServiceSoap.getSupportCity"</span>,</span><br><span class="line">		Params:arg</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	MEAP.SOAP.Runner(option,<span class="function"><span class="keyword">function</span>(<span class="params">err,res,data</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!err)</span><br><span class="line">		&#123;</span><br><span class="line">			Response.end(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="string">'-1'</span>,message:<span class="string">'Error'</span>&#125;));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><h3 id="过滤器规则使用"><a href="#过滤器规则使用" class="headerlink" title="过滤器规则使用"></a>过滤器规则使用</h3><ol>
 <li>协议过滤<br> 比如TCP，只显示TCP协议。</li>
@@ -366,16 +360,19 @@
 <p>更详细示例参见：<a href="https://github.com/freewind/async_demo/blob/master/iterator.js" target="_blank" rel="external">iterator</a></p>
 <h2 id="ajax处理网页"><a href="#ajax处理网页" class="headerlink" title="ajax处理网页"></a>ajax处理网页</h2><p>引入cheerio包,类似于jquery插件.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $=<span class="built_in">require</span>(<span class="string">"cheerio"</span>);</span><br></pre></td></tr></table></figure></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -383,264 +380,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/03/20/appcan 学习 (一) mas基础/" rel="next" title="appcan 学习 (一) mas基础">
+                <i class="fa fa-chevron-left"></i> appcan 学习 (一) mas基础
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2015/03/20/appcan 学习 (一) mas基础/" itemprop="url">
-                  appcan 学习 (一) mas基础
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-20T00:00:00+08:00" content="2015-03-20">
-              2015-03-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>mas如何获取传参,以及如何封装接口.</p>
-<h2 id="获取mas接口的参数"><a href="#获取mas接口的参数" class="headerlink" title="获取mas接口的参数"></a>获取mas接口的参数</h2><h3 id="get传参-Param-Robot-Request-Response-IF"><a href="#get传参-Param-Robot-Request-Response-IF" class="headerlink" title="get传参(Param, Robot, Request, Response, IF)"></a>get传参(Param, Robot, Request, Response, IF)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> params = Param.params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="表单提交"><a href="#表单提交" class="headerlink" title="表单提交"></a>表单提交</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arg = Param.fields;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="普通post传输json"><a href="#普通post传输json" class="headerlink" title="普通post传输json"></a>普通post传输json</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arg = <span class="built_in">JSON</span>.parse(Param.body.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="resultful风格接口-参数在url中"><a href="#resultful风格接口-参数在url中" class="headerlink" title="resultful风格接口(参数在url中)"></a>resultful风格接口(参数在url中)</h3><p>如接口请求地址是: <a href="http://127.0.0.1:8080/ajax/base/appcan/login" target="_blank" rel="external">http://127.0.0.1:8080/ajax/base/appcan/login</a><br>接口路径配置中,定义<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span>&gt;</span>base/$&#123;company&#125;/login<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>通过访问param对象访问参数.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = Param.baas;</span><br></pre></td></tr></table></figure></p>
-<h2 id="封装ajax请求接口（get-post）"><a href="#封装ajax请求接口（get-post）" class="headerlink" title="封装ajax请求接口（get,post）"></a>封装ajax请求接口（get,post）</h2><h3 id="封装get请求接口"><a href="#封装get请求接口" class="headerlink" title="封装get请求接口"></a>封装get请求接口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     *AJAX接口</span><br><span class="line">     *用于对接网站数据源</span><br><span class="line">     *option.method    GET 或 POST请求方式</span><br><span class="line">     *option.Cookie	Cookie 信息是否启用</span><br><span class="line">     *option.url	访问目标网站地址</span><br><span class="line">     -option.Params	Params  GET数据</span><br><span class="line">     -option.Enctype	Enctype 表单编码     application/x-www-form-urlencoded  |   multipart/form-data  | application/json  | multipart/form-data |   ""</span><br><span class="line">     -option.Body	Body POST数据</span><br><span class="line">     -option.Files	Files 文件数据</span><br><span class="line">     -option.FileRNLength	上传附件失败时添加 FileRNLength为true 默认为 false </span><br><span class="line">     -option.Headers	Headers 头信息</span><br><span class="line">     -option.CacheControl	CacheControl 头部缓存控制</span><br><span class="line">     -option.BasicAuth	BasicAuth 自动提交数据</span><br><span class="line">     -option.Redir	Redir  重定向</span><br><span class="line">     -option.CA	CA CA信息</span><br><span class="line">     -option.ClientAuthentication	ClientAuthentication 自动填写</span><br><span class="line">     -option.Stream	流信息</span><br><span class="line">     -option.Charset	访问页编码格式</span><br><span class="line">     -option.FileRNLength	默认为true目标网站上传文件编码为GBK时修改为false</span><br><span class="line">	 *为必用参数  -为可选参数</span><br><span class="line">     *Robot	Robot 对象是当前终端访问的上下文对象</span><br><span class="line">     MEAP.AJAX.Runner(option,function(err,res,data),Robot,function(des));   option:目标网站访问信息,  err 网站地址状态 -1 null ,res 目标网站的全部返回信息, data 网站的源码信息,  des 页面源码信息进行预处理</span><br><span class="line">     */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> option=&#123;</span><br><span class="line">		method : <span class="string">"GET"</span>,</span><br><span class="line">		url : <span class="string">"http://www.baidu.com"</span>,</span><br><span class="line">		params:&#123;</span><br><span class="line">		    name:<span class="string">""</span></span><br><span class="line">		&#125;,</span><br><span class="line">		Cookie : <span class="string">"true"</span>,</span><br><span class="line">		timeout : <span class="number">60</span>,</span><br><span class="line">		agent : <span class="string">"false"</span>,</span><br><span class="line">        FileRNLength : <span class="string">"false"</span>,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">    Response.setHeader(<span class="string">"Content-type"</span>,<span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line">	MEAP.AJAX.Runner(option,<span class="function"><span class="keyword">function</span>(<span class="params">err,res,data</span>)</span>&#123;</span><br><span class="line">	    <span class="keyword">if</span>(!err)</span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your normal handling code</span></span><br><span class="line">            Response.end(data);</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">else</span></span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your exception handling code </span></span><br><span class="line">            Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="number">-1</span>, message:<span class="string">"Error"</span>&#125;)); </span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;,Robot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="封装post请求接口"><a href="#封装post请求接口" class="headerlink" title="封装post请求接口"></a>封装post请求接口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> option=&#123;</span><br><span class="line">		method : <span class="string">"POST"</span>,</span><br><span class="line">		url : <span class="string">""</span>,</span><br><span class="line">		Cookie : <span class="string">"true"</span>,</span><br><span class="line">		timeout : <span class="number">60</span>,</span><br><span class="line">		Body:&#123;</span><br><span class="line">		    name:<span class="string">""</span></span><br><span class="line">		&#125;,</span><br><span class="line">		Enctype:<span class="string">"application/x-www-form-urlencoded"</span>,</span><br><span class="line">		agent : <span class="string">"false"</span>,</span><br><span class="line">        FileRNLength : <span class="string">"false"</span>,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">    Response.setHeader(<span class="string">"Content-type"</span>,<span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line">	MEAP.AJAX.Runner(option,<span class="function"><span class="keyword">function</span>(<span class="params">err,res,data</span>)</span>&#123;</span><br><span class="line">	    <span class="keyword">if</span>(!err)</span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your normal handling code</span></span><br><span class="line">            Response.end(data);</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">else</span></span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your exception handling code </span></span><br><span class="line">            Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="number">-1</span>, message:<span class="string">"Error"</span>&#125;)); </span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;,Robot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><h3 id="会话的创建、激活和保持"><a href="#会话的创建、激活和保持" class="headerlink" title="会话的创建、激活和保持"></a>会话的创建、激活和保持</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//session的创建</span></span><br><span class="line"><span class="keyword">var</span> accessToken = Robot.createSession(Response, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...登录操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//激活session</span></span><br><span class="line">Robot.activeSession(<span class="number">3600</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在session中存入用户数据</span></span><br><span class="line">Robot.set(<span class="string">"company"</span>, Param.baas.Company);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在cookies中返回token,用于下次访问时携带</span></span><br><span class="line"><span class="keyword">var</span> cookies = Response.getHeader(<span class="string">"Set-Cookie"</span>)||[];</span><br><span class="line">cookies.push(<span class="string">"x-mas-app-info="</span> + accesstoken + <span class="string">"; path=/"</span>);</span><br><span class="line">Response.setHeader(<span class="string">"Set-Cookie"</span>, cookies);</span><br><span class="line"></span><br><span class="line">Response.end(data);</span><br></pre></td></tr></table></figure>
-<ol>
-<li>通过createSession创建会话。激活设为false。只是一个临时会话。此次接口调用结束即失效</li>
-<li>登陆成功时，我们调用activeSession激活会话，有效期3600秒。即用户在3600秒之内可以通过此会话访问其他接口。</li>
-<li>激活后的会话，我们可以往里写入我们的会话参数。Robot.Set</li>
-<li>为了保证前端调用后续接口时自动携带会话Cookie，我们需要把accessToken写入到cookie中。x-mas-app-info</li>
-</ol>
-<p>例子中，会话有效期3600秒。如果希望能够重置有效期，则可在过滤器中activeSession来重置会话有效期，实现会话保持。</p>
-<h3 id="会话与过滤器"><a href="#会话与过滤器" class="headerlink" title="会话与过滤器"></a>会话与过滤器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, i_f, callback</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//创建一个白名单</span></span><br><span class="line">    <span class="keyword">var</span> white = &#123;<span class="string">"code"</span>:<span class="number">1</span>, <span class="string">"login"</span>:<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="comment">//白名单里的接口不用登录,直接访问</span></span><br><span class="line">    <span class="keyword">if</span>(white[Param.i_f.path] == <span class="number">1</span>)&#123;</span><br><span class="line">        callback(<span class="number">0</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(Robot.Get(<span class="string">"status"</span>) != <span class="string">"success"</span>)&#123;</span><br><span class="line">            Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="number">-1</span>,msg:<span class="string">"you should login first."</span>&#125;));</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//会话保持</span></span><br><span class="line">            Robot.activeSession(<span class="number">3600</span>);</span><br><span class="line">            callback(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="接口日志"><a href="#接口日志" class="headerlink" title="接口日志"></a>接口日志</h2><p>在接口中输出LOG必须使用如下函数便于进行日志收集与分析.</p>
-<ul>
-<li>Robot.LOG</li>
-<li>Robot.WARN</li>
-<li>Robot.ERROR</li>
-</ul>
-<p>接口返回值建议标准:</p>
-<ul>
-<li>成功使用0  {status:0,data:”xxx”}</li>
-<li>失败使用小于0的值   {status:-1,msg:”xxxx”}</li>
-<li>大于0的值MAS系统用于表述系统异常或请求不合规。</li>
-</ul>
-<h2 id="访问一个文件系统-静态网站"><a href="#访问一个文件系统-静态网站" class="headerlink" title="*访问一个文件系统  (静态网站)"></a>*访问一个文件系统  (静态网站)</h2><h2 id="工程间接口调用"><a href="#工程间接口调用" class="headerlink" title="工程间接口调用"></a>工程间接口调用</h2><p>工程cross中的demo接口调用工程ajax中的data接口</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//工程demo中这样写</span></span><br><span class="line"><span class="comment">//CallInterface来调用其他模块接口。</span></span><br><span class="line"><span class="comment">//"ajax"为目标模块名称</span></span><br><span class="line"><span class="comment">//"data"为data接口的path参数</span></span><br><span class="line"><span class="comment">//"get"为data接口的method参数（必须小写）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span>&#123;</span><br><span class="line">    Robot.Context.CallInterface(<span class="string">"ajax"</span>, <span class="string">"data"</span>, <span class="string">"get"</span>, Param, Robot, Request, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="如何处理动态网页"><a href="#如何处理动态网页" class="headerlink" title="*如何处理动态网页"></a>*如何处理动态网页</h2><h2 id="mas如何管理服务"><a href="#mas如何管理服务" class="headerlink" title="*mas如何管理服务"></a>*mas如何管理服务</h2><h2 id="mas如何配置服务"><a href="#mas如何配置服务" class="headerlink" title="*mas如何配置服务"></a>*mas如何配置服务</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/1970/01/01/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="1970-01-01T00:00:00+08:00" content="1970-01-01">
-              1970-01-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -648,6 +413,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -667,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/通用头像.png"
@@ -718,6 +496,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongoose-增删改差，聚合"><span class="nav-number">1.</span> <span class="nav-text">mongoose 增删改差，聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mongoose-增删改差-聚合"><span class="nav-number">1.1.</span> <span class="nav-text">mongoose 增删改差,聚合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装webservice接口"><span class="nav-number">2.</span> <span class="nav-text">封装webservice接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wireshark"><span class="nav-number">3.</span> <span class="nav-text">wireshark</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器规则使用"><span class="nav-number">3.1.</span> <span class="nav-text">过滤器规则使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcpdump"><span class="nav-number">4.</span> <span class="nav-text">tcpdump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jdbc连接mysql"><span class="nav-number">5.</span> <span class="nav-text">jdbc连接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源配置"><span class="nav-number">5.1.</span> <span class="nav-text">数据源配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码部分"><span class="nav-number">5.2.</span> <span class="nav-text">代码部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs访问redis"><span class="nav-number">6.</span> <span class="nav-text">nodejs访问redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis-createClient-连接到redis服务器"><span class="nav-number">6.1.</span> <span class="nav-text">redis.createClient()连接到redis服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证-client-auth-password-callback"><span class="nav-number">6.2.</span> <span class="nav-text">认证 client.auth(password, callback)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单值set和get"><span class="nav-number">6.3.</span> <span class="nav-text">单值set和get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多值get和set"><span class="nav-number">6.4.</span> <span class="nav-text">多值get和set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包执行多个命令-事务"><span class="nav-number">6.5.</span> <span class="nav-text">打包执行多个命令(事务)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#async库的使用"><span class="nav-number">7.</span> <span class="nav-text">async库的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#series"><span class="nav-number">7.1.</span> <span class="nav-text">series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waterfall"><span class="nav-number">7.2.</span> <span class="nav-text">waterfall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parallel"><span class="nav-number">7.3.</span> <span class="nav-text">parallel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">7.4.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#auto"><span class="nav-number">7.5.</span> <span class="nav-text">auto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whilst"><span class="nav-number">7.6.</span> <span class="nav-text">whilst</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#until"><span class="nav-number">7.7.</span> <span class="nav-text">until</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iterator"><span class="nav-number">7.8.</span> <span class="nav-text">iterator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax处理网页"><span class="nav-number">8.</span> <span class="nav-text">ajax处理网页</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -814,6 +603,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

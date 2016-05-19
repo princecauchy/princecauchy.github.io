@@ -1,0 +1,623 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="appcan," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="mas如何获取传参,以及如何封装接口.
+获取mas接口的参数get传参(Param, Robot, Request, Response, IF)123function run(Param, Robot, Request, Response, IF)&amp;#123;	var params = Param.params;&amp;#125;
+表单提交1234function run(Param, Robot, R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="appcan 学习 (一) mas基础">
+<meta property="og:url" content="http://blog.mathscs.com/2015/03/20/appcan 学习 (一) mas基础/index.html">
+<meta property="og:site_name" content="柯西知识库">
+<meta property="og:description" content="mas如何获取传参,以及如何封装接口.
+获取mas接口的参数get传参(Param, Robot, Request, Response, IF)123function run(Param, Robot, Request, Response, IF)&amp;#123;	var params = Param.params;&amp;#125;
+表单提交1234function run(Param, Robot, R">
+<meta property="og:updated_time" content="2016-05-19T15:59:39.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="appcan 学习 (一) mas基础">
+<meta name="twitter:description" content="mas如何获取传参,以及如何封装接口.
+获取mas接口的参数get传参(Param, Robot, Request, Response, IF)123function run(Param, Robot, Request, Response, IF)&amp;#123;	var params = Param.params;&amp;#125;
+表单提交1234function run(Param, Robot, R">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> appcan 学习 (一) mas基础 | 柯西知识库 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">柯西知识库</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                appcan 学习 (一) mas基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-20T00:00:00+08:00" content="2015-03-20">
+              2015-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>mas如何获取传参,以及如何封装接口.</p>
+<h2 id="获取mas接口的参数"><a href="#获取mas接口的参数" class="headerlink" title="获取mas接口的参数"></a>获取mas接口的参数</h2><h3 id="get传参-Param-Robot-Request-Response-IF"><a href="#get传参-Param-Robot-Request-Response-IF" class="headerlink" title="get传参(Param, Robot, Request, Response, IF)"></a>get传参(Param, Robot, Request, Response, IF)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> params = Param.params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="表单提交"><a href="#表单提交" class="headerlink" title="表单提交"></a>表单提交</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arg = Param.fields;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="普通post传输json"><a href="#普通post传输json" class="headerlink" title="普通post传输json"></a>普通post传输json</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arg = <span class="built_in">JSON</span>.parse(Param.body.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="resultful风格接口-参数在url中"><a href="#resultful风格接口-参数在url中" class="headerlink" title="resultful风格接口(参数在url中)"></a>resultful风格接口(参数在url中)</h3><p>如接口请求地址是: <a href="http://127.0.0.1:8080/ajax/base/appcan/login" target="_blank" rel="external">http://127.0.0.1:8080/ajax/base/appcan/login</a><br>接口路径配置中,定义<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span>&gt;</span>base/$&#123;company&#125;/login<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>通过访问param对象访问参数.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = Param.baas;</span><br></pre></td></tr></table></figure></p>
+<h2 id="封装ajax请求接口（get-post）"><a href="#封装ajax请求接口（get-post）" class="headerlink" title="封装ajax请求接口（get,post）"></a>封装ajax请求接口（get,post）</h2><h3 id="封装get请求接口"><a href="#封装get请求接口" class="headerlink" title="封装get请求接口"></a>封装get请求接口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     *AJAX接口</span><br><span class="line">     *用于对接网站数据源</span><br><span class="line">     *option.method    GET 或 POST请求方式</span><br><span class="line">     *option.Cookie	Cookie 信息是否启用</span><br><span class="line">     *option.url	访问目标网站地址</span><br><span class="line">     -option.Params	Params  GET数据</span><br><span class="line">     -option.Enctype	Enctype 表单编码     application/x-www-form-urlencoded  |   multipart/form-data  | application/json  | multipart/form-data |   ""</span><br><span class="line">     -option.Body	Body POST数据</span><br><span class="line">     -option.Files	Files 文件数据</span><br><span class="line">     -option.FileRNLength	上传附件失败时添加 FileRNLength为true 默认为 false </span><br><span class="line">     -option.Headers	Headers 头信息</span><br><span class="line">     -option.CacheControl	CacheControl 头部缓存控制</span><br><span class="line">     -option.BasicAuth	BasicAuth 自动提交数据</span><br><span class="line">     -option.Redir	Redir  重定向</span><br><span class="line">     -option.CA	CA CA信息</span><br><span class="line">     -option.ClientAuthentication	ClientAuthentication 自动填写</span><br><span class="line">     -option.Stream	流信息</span><br><span class="line">     -option.Charset	访问页编码格式</span><br><span class="line">     -option.FileRNLength	默认为true目标网站上传文件编码为GBK时修改为false</span><br><span class="line">	 *为必用参数  -为可选参数</span><br><span class="line">     *Robot	Robot 对象是当前终端访问的上下文对象</span><br><span class="line">     MEAP.AJAX.Runner(option,function(err,res,data),Robot,function(des));   option:目标网站访问信息,  err 网站地址状态 -1 null ,res 目标网站的全部返回信息, data 网站的源码信息,  des 页面源码信息进行预处理</span><br><span class="line">     */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> option=&#123;</span><br><span class="line">		method : <span class="string">"GET"</span>,</span><br><span class="line">		url : <span class="string">"http://www.baidu.com"</span>,</span><br><span class="line">		params:&#123;</span><br><span class="line">		    name:<span class="string">""</span></span><br><span class="line">		&#125;,</span><br><span class="line">		Cookie : <span class="string">"true"</span>,</span><br><span class="line">		timeout : <span class="number">60</span>,</span><br><span class="line">		agent : <span class="string">"false"</span>,</span><br><span class="line">        FileRNLength : <span class="string">"false"</span>,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">    Response.setHeader(<span class="string">"Content-type"</span>,<span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line">	MEAP.AJAX.Runner(option,<span class="function"><span class="keyword">function</span>(<span class="params">err,res,data</span>)</span>&#123;</span><br><span class="line">	    <span class="keyword">if</span>(!err)</span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your normal handling code</span></span><br><span class="line">            Response.end(data);</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">else</span></span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your exception handling code </span></span><br><span class="line">            Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="number">-1</span>, message:<span class="string">"Error"</span>&#125;)); </span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;,Robot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="封装post请求接口"><a href="#封装post请求接口" class="headerlink" title="封装post请求接口"></a>封装post请求接口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> option=&#123;</span><br><span class="line">		method : <span class="string">"POST"</span>,</span><br><span class="line">		url : <span class="string">""</span>,</span><br><span class="line">		Cookie : <span class="string">"true"</span>,</span><br><span class="line">		timeout : <span class="number">60</span>,</span><br><span class="line">		Body:&#123;</span><br><span class="line">		    name:<span class="string">""</span></span><br><span class="line">		&#125;,</span><br><span class="line">		Enctype:<span class="string">"application/x-www-form-urlencoded"</span>,</span><br><span class="line">		agent : <span class="string">"false"</span>,</span><br><span class="line">        FileRNLength : <span class="string">"false"</span>,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">    Response.setHeader(<span class="string">"Content-type"</span>,<span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line">	MEAP.AJAX.Runner(option,<span class="function"><span class="keyword">function</span>(<span class="params">err,res,data</span>)</span>&#123;</span><br><span class="line">	    <span class="keyword">if</span>(!err)</span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your normal handling code</span></span><br><span class="line">            Response.end(data);</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">else</span></span><br><span class="line">	    &#123;</span><br><span class="line">			<span class="comment">//Add your exception handling code </span></span><br><span class="line">            Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="number">-1</span>, message:<span class="string">"Error"</span>&#125;)); </span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;,Robot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><h3 id="会话的创建、激活和保持"><a href="#会话的创建、激活和保持" class="headerlink" title="会话的创建、激活和保持"></a>会话的创建、激活和保持</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//session的创建</span></span><br><span class="line"><span class="keyword">var</span> accessToken = Robot.createSession(Response, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...登录操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//激活session</span></span><br><span class="line">Robot.activeSession(<span class="number">3600</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在session中存入用户数据</span></span><br><span class="line">Robot.set(<span class="string">"company"</span>, Param.baas.Company);</span><br><span class="line"></span><br><span class="line"><span class="comment">//在cookies中返回token,用于下次访问时携带</span></span><br><span class="line"><span class="keyword">var</span> cookies = Response.getHeader(<span class="string">"Set-Cookie"</span>)||[];</span><br><span class="line">cookies.push(<span class="string">"x-mas-app-info="</span> + accesstoken + <span class="string">"; path=/"</span>);</span><br><span class="line">Response.setHeader(<span class="string">"Set-Cookie"</span>, cookies);</span><br><span class="line"></span><br><span class="line">Response.end(data);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>通过createSession创建会话。激活设为false。只是一个临时会话。此次接口调用结束即失效</li>
+<li>登陆成功时，我们调用activeSession激活会话，有效期3600秒。即用户在3600秒之内可以通过此会话访问其他接口。</li>
+<li>激活后的会话，我们可以往里写入我们的会话参数。Robot.Set</li>
+<li>为了保证前端调用后续接口时自动携带会话Cookie，我们需要把accessToken写入到cookie中。x-mas-app-info</li>
+</ol>
+<p>例子中，会话有效期3600秒。如果希望能够重置有效期，则可在过滤器中activeSession来重置会话有效期，实现会话保持。</p>
+<h3 id="会话与过滤器"><a href="#会话与过滤器" class="headerlink" title="会话与过滤器"></a>会话与过滤器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, i_f, callback</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//创建一个白名单</span></span><br><span class="line">    <span class="keyword">var</span> white = &#123;<span class="string">"code"</span>:<span class="number">1</span>, <span class="string">"login"</span>:<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="comment">//白名单里的接口不用登录,直接访问</span></span><br><span class="line">    <span class="keyword">if</span>(white[Param.i_f.path] == <span class="number">1</span>)&#123;</span><br><span class="line">        callback(<span class="number">0</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(Robot.Get(<span class="string">"status"</span>) != <span class="string">"success"</span>)&#123;</span><br><span class="line">            Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="number">-1</span>,msg:<span class="string">"you should login first."</span>&#125;));</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//会话保持</span></span><br><span class="line">            Robot.activeSession(<span class="number">3600</span>);</span><br><span class="line">            callback(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接口日志"><a href="#接口日志" class="headerlink" title="接口日志"></a>接口日志</h2><p>在接口中输出LOG必须使用如下函数便于进行日志收集与分析.</p>
+<ul>
+<li>Robot.LOG</li>
+<li>Robot.WARN</li>
+<li>Robot.ERROR</li>
+</ul>
+<p>接口返回值建议标准:</p>
+<ul>
+<li>成功使用0  {status:0,data:”xxx”}</li>
+<li>失败使用小于0的值   {status:-1,msg:”xxxx”}</li>
+<li>大于0的值MAS系统用于表述系统异常或请求不合规。</li>
+</ul>
+<h2 id="访问一个文件系统-静态网站"><a href="#访问一个文件系统-静态网站" class="headerlink" title="*访问一个文件系统  (静态网站)"></a>*访问一个文件系统  (静态网站)</h2><h2 id="工程间接口调用"><a href="#工程间接口调用" class="headerlink" title="工程间接口调用"></a>工程间接口调用</h2><p>工程cross中的demo接口调用工程ajax中的data接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//工程demo中这样写</span></span><br><span class="line"><span class="comment">//CallInterface来调用其他模块接口。</span></span><br><span class="line"><span class="comment">//"ajax"为目标模块名称</span></span><br><span class="line"><span class="comment">//"data"为data接口的path参数</span></span><br><span class="line"><span class="comment">//"get"为data接口的method参数（必须小写）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span>&#123;</span><br><span class="line">    Robot.Context.CallInterface(<span class="string">"ajax"</span>, <span class="string">"data"</span>, <span class="string">"get"</span>, Param, Robot, Request, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何处理动态网页"><a href="#如何处理动态网页" class="headerlink" title="*如何处理动态网页"></a>*如何处理动态网页</h2><h2 id="mas如何管理服务"><a href="#mas如何管理服务" class="headerlink" title="*mas如何管理服务"></a>*mas如何管理服务</h2><h2 id="mas如何配置服务"><a href="#mas如何配置服务" class="headerlink" title="*mas如何配置服务"></a>*mas如何配置服务</h2>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/appcan/" rel="tag">#appcan</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/1970/01/01/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/20/nodejs学习(一)/" rel="prev" title="nodejs快速掌握">
+                nodejs快速掌握 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/通用头像.png"
+               alt="princecauchy" />
+          <p class="site-author-name" itemprop="name">princecauchy</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取mas接口的参数"><span class="nav-number">1.</span> <span class="nav-text">获取mas接口的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get传参-Param-Robot-Request-Response-IF"><span class="nav-number">1.1.</span> <span class="nav-text">get传参(Param, Robot, Request, Response, IF)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单提交"><span class="nav-number">1.2.</span> <span class="nav-text">表单提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通post传输json"><span class="nav-number">1.3.</span> <span class="nav-text">普通post传输json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resultful风格接口-参数在url中"><span class="nav-number">1.4.</span> <span class="nav-text">resultful风格接口(参数在url中)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装ajax请求接口（get-post）"><span class="nav-number">2.</span> <span class="nav-text">封装ajax请求接口（get,post）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装get请求接口"><span class="nav-number">2.1.</span> <span class="nav-text">封装get请求接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装post请求接口"><span class="nav-number">2.2.</span> <span class="nav-text">封装post请求接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session"><span class="nav-number">3.</span> <span class="nav-text">session</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#会话的创建、激活和保持"><span class="nav-number">3.1.</span> <span class="nav-text">会话的创建、激活和保持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话与过滤器"><span class="nav-number">3.2.</span> <span class="nav-text">会话与过滤器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口日志"><span class="nav-number">4.</span> <span class="nav-text">接口日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问一个文件系统-静态网站"><span class="nav-number">5.</span> <span class="nav-text">*访问一个文件系统  (静态网站)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程间接口调用"><span class="nav-number">6.</span> <span class="nav-text">工程间接口调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何处理动态网页"><span class="nav-number">7.</span> <span class="nav-text">*如何处理动态网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mas如何管理服务"><span class="nav-number">8.</span> <span class="nav-text">*mas如何管理服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mas如何配置服务"><span class="nav-number">9.</span> <span class="nav-text">*mas如何配置服务</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">princecauchy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
