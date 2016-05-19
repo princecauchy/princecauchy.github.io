@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="mas如何获取传参,以及如何封装接口.
-获取mas接口的参数get传参(Param, Robot, Request, Response, IF)123function run(Param, Robot, Request, Response, IF)&amp;#123;	var params = Param.params;&amp;#125;
-表单提交1234function run(Param, Robot, R">
+<meta name="description" content="mas如何获取传参,以及如何封装接口.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="appcan 学习 (一) mas基础">
 <meta property="og:url" content="http://blog.mathscs.com/2015/03/20/appcan 学习 (一) mas基础/index.html">
 <meta property="og:site_name" content="柯西知识库">
-<meta property="og:description" content="mas如何获取传参,以及如何封装接口.
-获取mas接口的参数get传参(Param, Robot, Request, Response, IF)123function run(Param, Robot, Request, Response, IF)&amp;#123;	var params = Param.params;&amp;#125;
-表单提交1234function run(Param, Robot, R">
-<meta property="og:updated_time" content="2016-05-19T15:59:39.163Z">
+<meta property="og:description" content="mas如何获取传参,以及如何封装接口.">
+<meta property="og:updated_time" content="2016-05-19T16:41:39.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="appcan 学习 (一) mas基础">
-<meta name="twitter:description" content="mas如何获取传参,以及如何封装接口.
-获取mas接口的参数get传参(Param, Robot, Request, Response, IF)123function run(Param, Robot, Request, Response, IF)&amp;#123;	var params = Param.params;&amp;#125;
-表单提交1234function run(Param, Robot, R">
+<meta name="twitter:description" content="mas如何获取传参,以及如何封装接口.">
 
 
 
@@ -306,7 +300,7 @@
       
 
       
-        <p>mas如何获取传参,以及如何封装接口.</p>
+        <p>mas如何获取传参,以及如何封装接口.<br><a id="more"></a></p>
 <h2 id="获取mas接口的参数"><a href="#获取mas接口的参数" class="headerlink" title="获取mas接口的参数"></a>获取mas接口的参数</h2><h3 id="get传参-Param-Robot-Request-Response-IF"><a href="#get传参-Param-Robot-Request-Response-IF" class="headerlink" title="get传参(Param, Robot, Request, Response, IF)"></a>get传参(Param, Robot, Request, Response, IF)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> params = Param.params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="表单提交"><a href="#表单提交" class="headerlink" title="表单提交"></a>表单提交</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arg = Param.fields;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="普通post传输json"><a href="#普通post传输json" class="headerlink" title="普通post传输json"></a>普通post传输json</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arg = <span class="built_in">JSON</span>.parse(Param.body.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
