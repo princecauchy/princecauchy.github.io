@@ -1,0 +1,666 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="mongodb访问, async异步流控制, mysql访问.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs快速掌握">
+<meta property="og:url" content="http://mathscs.com/2016/03/20/nodejs/nodejs快速掌握/index.html">
+<meta property="og:site_name" content="princecauchy's知识仓库">
+<meta property="og:description" content="mongodb访问, async异步流控制, mysql访问.">
+<meta property="og:updated_time" content="2016-05-19T16:42:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs快速掌握">
+<meta name="twitter:description" content="mongodb访问, async异步流控制, mysql访问.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> nodejs快速掌握 | princecauchy's知识仓库 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">princecauchy's知识仓库</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '3z1Kg1ogTM8b5WXcwyPd','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                nodejs快速掌握
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-20T00:00:00+08:00" content="2016-03-20">
+              2016-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>mongodb访问, async异步流控制, mysql访问.<br><a id="more"></a></p>
+<h2 id="mongoose-增删改差，聚合"><a href="#mongoose-增删改差，聚合" class="headerlink" title="mongoose 增删改差，聚合"></a>mongoose 增删改差，聚合</h2><h3 id="mongoose-增删改差-聚合"><a href="#mongoose-增删改差-聚合" class="headerlink" title="mongoose 增删改差,聚合"></a>mongoose 增删改差,聚合</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>);</span><br><span class="line"><span class="keyword">var</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param, Robot, Request, Response, IF</span>) </span>&#123;</span><br><span class="line">    Response.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/json;charet=utf-8"</span>);</span><br><span class="line">    <span class="keyword">var</span> userSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">        <span class="string">"name"</span> : <span class="built_in">String</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="built_in">Number</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> conn = mongoose.createConnection(<span class="string">"mongodb://test:test@10.10.1.183:27017/test"</span>);</span><br><span class="line">    <span class="keyword">var</span> userModel = conn.model(<span class="string">"test"</span>, userSchema);</span><br><span class="line">    userModel.find(&#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        Response.end(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            data : data</span><br><span class="line">        &#125;));</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));                              </span><br><span class="line">        findOne();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">var</span> findOne = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        userModel.findOne(&#123;</span><br><span class="line">            age : <span class="number">26</span></span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">            aggregate();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> aggregate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        userModel.aggregate(&#123;</span><br><span class="line">            $group : &#123;</span><br><span class="line">                _id : <span class="string">"$name"</span>,</span><br><span class="line">                sumAge : &#123;</span><br><span class="line">                    $sum : <span class="string">"$age"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="封装webservice接口"><a href="#封装webservice接口" class="headerlink" title="封装webservice接口"></a>封装webservice接口</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">Param,Robot,Request,Response,IF</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arg = Param.params;</span><br><span class="line">	<span class="keyword">var</span> option=&#123;</span><br><span class="line">		wsdl:<span class="string">"http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?wsdl"</span>,</span><br><span class="line">		func:<span class="string">"WeatherWebService.WeatherWebServiceSoap.getSupportCity"</span>,</span><br><span class="line">		Params:arg</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	MEAP.SOAP.Runner(option,<span class="function"><span class="keyword">function</span>(<span class="params">err,res,data</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!err)</span><br><span class="line">		&#123;</span><br><span class="line">			Response.end(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			Response.end(<span class="built_in">JSON</span>.stringify(&#123;status:<span class="string">'-1'</span>,message:<span class="string">'Error'</span>&#125;));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><h3 id="过滤器规则使用"><a href="#过滤器规则使用" class="headerlink" title="过滤器规则使用"></a>过滤器规则使用</h3><ol>
+<li>协议过滤<br> 比如TCP，只显示TCP协议。</li>
+<li>IP过滤<br> 比如 ip.src ==192.168.1.102 显示源地址为192.168.1.102，<br> ip.dst==192.168.1.102, 目标地址为192.168.1.102</li>
+<li>端口过滤<br> tcp.port ==80,  端口为80的<br> tcp.srcport == 80,  只显示TCP协议的愿端口为80的。</li>
+<li>http过滤<br> http.request.method==”GET”,   只显示HTTP GET方法的。</li>
+<li>逻辑运算符为AND/OR</li>
+</ol>
+<p>更多详细示例请看:<a href="http://www.cnblogs.com/tankxiao/archive/2012/10/10/2711777.html" target="_blank" rel="external">wireshark</a></p>
+<h2 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h2><p>linux下导出网络信息监听文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth2 -t -s 0 -w target.cap</span><br></pre></td></tr></table></figure></p>
+<p>其中网卡信息查看,键入命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure></p>
+<h2 id="jdbc连接mysql"><a href="#jdbc连接mysql" class="headerlink" title="jdbc连接mysql"></a>jdbc连接mysql</h2><h3 id="数据源配置"><a href="#数据源配置" class="headerlink" title="数据源配置"></a>数据源配置</h3><h3 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sql = MEAP.JDBC.BuildStatement(<span class="string">"select  * from employees where id=?"</span>, [<span class="string">"12"</span>]);</span><br><span class="line"><span class="keyword">var</span> option = &#123;</span><br><span class="line">    name : <span class="string">"mas"</span>, <span class="comment">//数据源名称</span></span><br><span class="line">    sql : sql</span><br><span class="line">&#125;;</span><br><span class="line">MEAP.JDBC.ExecQuery(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, results</span>)</span>&#123;&#125; );</span><br></pre></td></tr></table></figure>
+<h2 id="nodejs访问redis"><a href="#nodejs访问redis" class="headerlink" title="nodejs访问redis"></a>nodejs访问redis</h2><p>支持字符串（strings）、哈希（hashes）、列表（lists）、集合（sets）和 有序集合（sorted sets）等；支持对复杂数据结构的高速操作。</p>
+<h3 id="redis-createClient-连接到redis服务器"><a href="#redis-createClient-连接到redis服务器" class="headerlink" title="redis.createClient()连接到redis服务器"></a>redis.createClient()连接到redis服务器</h3><p>…</p>
+<h3 id="认证-client-auth-password-callback"><a href="#认证-client-auth-password-callback" class="headerlink" title="认证 client.auth(password, callback)"></a>认证 client.auth(password, callback)</h3><p>…</p>
+<h3 id="单值set和get"><a href="#单值set和get" class="headerlink" title="单值set和get"></a>单值set和get</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> redis = <span class="built_in">require</span>(<span class="string">'redis'</span>),</span><br><span class="line">    RDS_PORT = <span class="number">6379</span>,        <span class="comment">//端口号</span></span><br><span class="line">    RDS_HOST = <span class="string">'127.0.1.1'</span>,    <span class="comment">//服务器IP</span></span><br><span class="line">    RDS_PWD = <span class="string">'porschev'</span>,    <span class="comment">//密码    </span></span><br><span class="line">    RDS_OPTS = &#123;&#125;,            <span class="comment">//设置项</span></span><br><span class="line">    client = redis.createClient(RDS_PORT,RDS_HOST,RDS_OPTS);</span><br><span class="line"></span><br><span class="line">client.auth(RDS_PWD,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'通过认证'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'connect'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    client.set(<span class="string">'author'</span>, <span class="string">'Wilson'</span>,redis.print);</span><br><span class="line">    client.get(<span class="string">'author'</span>, redis.print);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'connect'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'ready'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ready'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="多值get和set"><a href="#多值get和set" class="headerlink" title="多值get和set"></a>多值get和set</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> redis = <span class="built_in">require</span>(<span class="string">'redis'</span>),</span><br><span class="line">    RDS_PORT = <span class="number">6379</span>,        <span class="comment">//端口号</span></span><br><span class="line">    RDS_HOST = <span class="string">'127.0.1.1'</span>,    <span class="comment">//服务器IP</span></span><br><span class="line">    RDS_PWD = <span class="string">'porschev'</span>,    <span class="comment">//密码    </span></span><br><span class="line">    RDS_OPTS = &#123;&#125;,            <span class="comment">//设置项</span></span><br><span class="line">    client = redis.createClient(RDS_PORT,RDS_HOST,RDS_OPTS);</span><br><span class="line"></span><br><span class="line">client.auth(RDS_PWD,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'通过认证'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'connect'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    client.hmset(<span class="string">'short'</span>, &#123;<span class="string">'js'</span>:<span class="string">'javascript'</span>,<span class="string">'C#'</span>:<span class="string">'C Sharp'</span>&#125;, redis.print);</span><br><span class="line">    client.hmset(<span class="string">'short'</span>, <span class="string">'SQL'</span>,<span class="string">'Structured Query Language'</span>,<span class="string">'HTML'</span>,<span class="string">'HyperText Mark-up Language'</span>, redis.print);</span><br><span class="line"></span><br><span class="line">    client.hgetall(<span class="string">"short"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err,res</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Error:'</span>+ err);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;            </span><br><span class="line">        <span class="built_in">console</span>.dir(res);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'ready'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'ready'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="打包执行多个命令-事务"><a href="#打包执行多个命令-事务" class="headerlink" title="打包执行多个命令(事务)"></a>打包执行多个命令(事务)</h3><p>更多详细示例:<a href="http://www.cnblogs.com/zhongweiv/p/node_redis.html" target="_blank" rel="external">redis</a></p>
+<h2 id="async库的使用"><a href="#async库的使用" class="headerlink" title="async库的使用"></a>async库的使用</h2><p><a href="http://www.webrube.com/node.js-web_rube/1468" target="_blank" rel="external">nodejs中Async库介绍</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">async</span> = <span class="built_in">require</span>(<span class="string">"async"</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="series"><a href="#series" class="headerlink" title="series"></a>series</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">async</span>.series([</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;</span><br><span class="line">            method : <span class="string">"GET"</span>,</span><br><span class="line">            url : <span class="string">"http://www.baidu.com"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        MEAP.AJAX.Runner(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">111</span>);</span><br><span class="line">            cb(err, <span class="number">1</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;</span><br><span class="line">            method : <span class="string">"GET"</span>,</span><br><span class="line">            url : <span class="string">"http://www.163.com"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        MEAP.AJAX.Runner(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">222</span>);</span><br><span class="line">            cb(err, <span class="number">2</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;</span><br><span class="line">            method : <span class="string">"GET"</span>,</span><br><span class="line">            url : <span class="string">"http://www.taobao.com"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        MEAP.AJAX.Runner(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">333</span>);</span><br><span class="line">            cb(err, <span class="number">3</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;], <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err, data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数的详细解释为：</p>
+<blockquote>
+<p>依次执行一个函数数组中的每个函数，每一个函数执行完成之后才能执行下一个函数。</p>
+<p>如果任何一个函数向它的回调函数中了一个error，则后面的函数都不会被执行，并且将会立刻会将该error以及已经执行了的函数的结果，给series中最后那个callback。</p>
+<p>当所有的函数执行完后（没有出错），则会把每个函数给其回调函数的结果合并为一个数组，给series最后的那个callback。</p>
+<p>还可以json的形式来提供tasks。每一个属性都会被当作函数来执行，并且结果也会以json形式给series最后的那个callback。这种方式可读性更高一些。</p>
+</blockquote>
+<p>具体例子可参考：<a href="https://github.com/freewind/async_demo/blob/master/series.js" title="https://github.com/freewind/async_demo/blob/master/series.js" target="_blank" rel="external">https://github.com/freewind/async_demo/blob/master/series.js</a><br>其中还包含了：</p>
+<blockquote>
+<p>如果中间某个函数出错，series函数如何处理</p>
+<p>如果某个函数给回调的值为undefined, null, {}, []等，series如何处理</p>
+<p>另外还需要注意的是：多个series调用之间是不分先后的，为series本身也是异步调用。</p>
+</blockquote>
+<h3 id="waterfall"><a href="#waterfall" class="headerlink" title="waterfall"></a>waterfall</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.waterfall([<span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        log(<span class="string">'1: '</span>, <span class="string">'start'</span>);</span><br><span class="line">        cb(<span class="literal">null</span>, <span class="number">3</span>);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">n, cb</span>) </span>&#123;</span><br><span class="line">        log(<span class="string">'2: '</span>, n);</span><br><span class="line">        t.inc(n, cb);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">n, cb</span>) </span>&#123;</span><br><span class="line">        log(<span class="string">'3: '</span>, n);</span><br><span class="line">        t.fire(n * n, cb);</span><br><span class="line">&#125;],</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">        log(’<span class="number">1</span> err: ‘, err); <span class="comment">// -&gt; null</span></span><br><span class="line">        log(’<span class="number">1</span> result: ‘, result); <span class="comment">// -&gt; 16</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>与seires相似，按顺序依次执行多个函数。不同之处，每一个函数产生的值，都将给下一个函数。如果中途出错，后面的函数将不会被执行。错误信息以及之前产生的结果，将给waterfall最终的callback。<br>这个函数名为waterfall(瀑布)，可以想像瀑布从上到下，中途冲过一层层突起的石头。注意，该函数不支持json式的tasks。</p>
+<h3 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a>parallel</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">async</span>.parallel([</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;</span><br><span class="line">            method : <span class="string">"GET"</span>,</span><br><span class="line">            url : <span class="string">"http://www.google.com"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        MEAP.AJAX.Runner(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">111</span>);</span><br><span class="line">            cb(err, <span class="number">1</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;</span><br><span class="line">            method : <span class="string">"GET"</span>,</span><br><span class="line">            url : <span class="string">"http://www.163.com"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        MEAP.AJAX.Runner(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">222</span>);</span><br><span class="line">            cb(err, <span class="number">2</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> option = &#123;</span><br><span class="line">            method : <span class="string">"GET"</span>,</span><br><span class="line">            url : <span class="string">"http://www.taobao.com"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        MEAP.AJAX.Runner(option, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">333</span>);</span><br><span class="line">            cb(err, <span class="number">3</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;], <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err, data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数的详细解释:</p>
+<blockquote>
+<p>并行执行多个函数，每个函数都是立即执行，不需要等待其它函数先执行。给最终callback的数组中的数据按照tasks中声明的顺序，而不是执行完成的顺序。</p>
+<p>如果某个函数出错，则立刻将err和已经执行完的函数的结果值给parallel最终的callback。其它未执行完的函数的值不会到最终数据，但要个位置。</p>
+<p>同时支持json形式的tasks，其最终callback的结果也为json形式。</p>
+</blockquote>
+<h3 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h3><p>queue相当于一个强版的parallel，主要是限制了worker数量，不再一次性全部执行。当worker数量不够用时，新入的任务将会排队等候，直到有新的worker可用。</p>
+<p>该函数有多个点可供回调，如worker用完时、等候任务时、全部执行完时等。</p>
+<p>定义一个queue，其worker数量为2，并在任务执行时，记录一下日志：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">h</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line">    <span class="keyword">var</span> queue = <span class="keyword">async</span>.queue(<span class="function"><span class="keyword">function</span>(<span class="params">task, cb</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(task);</span><br><span class="line">            cb(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        &#125;, <span class="number">3000</span>);</span><br><span class="line">    &#125;, <span class="number">2</span>);</span><br><span class="line">    queue.push(arr);</span><br><span class="line">    queue.drain = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"all tasks have been processed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更多详细示例参见：<a href="https://github.com/freewind/async_demo/blob/master/queue.js" target="_blank" rel="external">queue</a></p>
+<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p>更多详细示例:<a href="https://github.com/freewind/async_demo/blob/master/auto.js" target="_blank" rel="external">auto</a></p>
+<h3 id="whilst"><a href="#whilst" class="headerlink" title="whilst"></a>whilst</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.whilst(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">cb</span>)</span>&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+<p>更详细示例参见<a href="https://github.com/freewind/async_demo/blob/master/whilst_until.js" target="_blank" rel="external">whilst</a></p>
+<h3 id="until"><a href="#until" class="headerlink" title="until"></a>until</h3><p>与whilst相似,但是判断条件相反.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.until(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">cb</span>)</span>&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><p>将一组函数包装成为一个iterator，可通过next()得到以下一个函数为起点的新的iterator。该函数通常由async在内部使用，但如果需要时，也可在我们的代码中使用它。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iter = <span class="keyword">async</span>.iterator([<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'111'</span>)</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'222'</span>)</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'333'</span>)</span><br><span class="line">&#125;]);</span><br><span class="line"><span class="built_in">console</span>.log(iter());</span><br><span class="line"><span class="built_in">console</span>.log(iter.next());</span><br></pre></td></tr></table></figure></p>
+<p>直接调用()，会执行当前函数，并返回一个由下个函数为起点的新的iterator。</p>
+<p>调用next()，不会执行当前函数，直接返回由下个函数为起点的新iterator。</p>
+<p>对于同一个iterator，多次调用next()，不会影响自己.</p>
+<p>如果只有一个元素，则next()返回null.</p>
+<p>更详细示例参见：<a href="https://github.com/freewind/async_demo/blob/master/iterator.js" target="_blank" rel="external">iterator</a></p>
+<h2 id="ajax处理网页"><a href="#ajax处理网页" class="headerlink" title="ajax处理网页"></a>ajax处理网页</h2><p>引入cheerio包,类似于jquery插件.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $=<span class="built_in">require</span>(<span class="string">"cheerio"</span>);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/20/nodejs/appcan学习(一)mas基础/" rel="prev" title="appcan 学习 (一) mas基础">
+                appcan 学习 (一) mas基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/通用头像.png"
+               alt="princecauchy" />
+          <p class="site-author-name" itemprop="name">princecauchy</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongoose-增删改差，聚合"><span class="nav-number">1.</span> <span class="nav-text">mongoose 增删改差，聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mongoose-增删改差-聚合"><span class="nav-number">1.1.</span> <span class="nav-text">mongoose 增删改差,聚合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装webservice接口"><span class="nav-number">2.</span> <span class="nav-text">封装webservice接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wireshark"><span class="nav-number">3.</span> <span class="nav-text">wireshark</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器规则使用"><span class="nav-number">3.1.</span> <span class="nav-text">过滤器规则使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcpdump"><span class="nav-number">4.</span> <span class="nav-text">tcpdump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jdbc连接mysql"><span class="nav-number">5.</span> <span class="nav-text">jdbc连接mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源配置"><span class="nav-number">5.1.</span> <span class="nav-text">数据源配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码部分"><span class="nav-number">5.2.</span> <span class="nav-text">代码部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs访问redis"><span class="nav-number">6.</span> <span class="nav-text">nodejs访问redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis-createClient-连接到redis服务器"><span class="nav-number">6.1.</span> <span class="nav-text">redis.createClient()连接到redis服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证-client-auth-password-callback"><span class="nav-number">6.2.</span> <span class="nav-text">认证 client.auth(password, callback)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单值set和get"><span class="nav-number">6.3.</span> <span class="nav-text">单值set和get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多值get和set"><span class="nav-number">6.4.</span> <span class="nav-text">多值get和set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包执行多个命令-事务"><span class="nav-number">6.5.</span> <span class="nav-text">打包执行多个命令(事务)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#async库的使用"><span class="nav-number">7.</span> <span class="nav-text">async库的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#series"><span class="nav-number">7.1.</span> <span class="nav-text">series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waterfall"><span class="nav-number">7.2.</span> <span class="nav-text">waterfall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parallel"><span class="nav-number">7.3.</span> <span class="nav-text">parallel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">7.4.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#auto"><span class="nav-number">7.5.</span> <span class="nav-text">auto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whilst"><span class="nav-number">7.6.</span> <span class="nav-text">whilst</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#until"><span class="nav-number">7.7.</span> <span class="nav-text">until</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iterator"><span class="nav-number">7.8.</span> <span class="nav-text">iterator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ajax处理网页"><span class="nav-number">8.</span> <span class="nav-text">ajax处理网页</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">princecauchy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
