@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -102,15 +102,16 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="princecauchy's知识仓库">
-<meta property="og:url" content="http://mathscs.com/tags/appcan/index.html">
+<meta name="description" content="分支策略原文链接:http://blog.csdn.net/crylearner/article/details/18779137">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git下的多分支开发策略">
+<meta property="og:url" content="http://mathscs.com/2016/05/25/tools/Git下的多分支开发策略/index.html">
 <meta property="og:site_name" content="princecauchy's知识仓库">
-<meta property="og:description">
+<meta property="og:description" content="分支策略原文链接:http://blog.csdn.net/crylearner/article/details/18779137">
+<meta property="og:updated_time" content="2016-05-25T09:38:37.494Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="princecauchy's知识仓库">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Git下的多分支开发策略">
+<meta name="twitter:description" content="分支策略原文链接:http://blog.csdn.net/crylearner/article/details/18779137">
 
 
 
@@ -128,7 +129,7 @@
   };
 </script>
 
-  <title> 标签: appcan | princecauchy's知识仓库 </title>
+  <title> Git下的多分支开发策略 | princecauchy's知识仓库 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -149,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,46 +268,213 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        appcan
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git下的多分支开发策略
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T17:03:01+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/25/tools/Git下的多分支开发策略/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/tools/Git下的多分支开发策略/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/25/tools/Git下的多分支开发策略/" class="leancloud_visitors" data-flag-title="Git下的多分支开发策略">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>分支策略<br>原文链接:<a href="http://blog.csdn.net/crylearner/article/details/18779137" target="_blank" rel="external">http://blog.csdn.net/crylearner/article/details/18779137</a><br><a id="more"></a></p>
+<h2 id="日常开发中几个常见过程"><a href="#日常开发中几个常见过程" class="headerlink" title="日常开发中几个常见过程"></a>日常开发中几个常见过程</h2><ul>
+<li>功能开发 (开发人员)</li>
+<li>bug修复，包括测试版本的bugfix和生产版本的hotfix (开发人员)</li>
+<li>版本集成，包括发布测试版本和生产版本 (项目经理)</li>
+<li>版本测试 (测试人员)</li>
+</ul>
+<h2 id="分支策略的核心任务"><a href="#分支策略的核心任务" class="headerlink" title="分支策略的核心任务"></a>分支策略的核心任务</h2><ul>
+<li>保证bug修复与功能开发并行，不会出现堵塞情形。</li>
+<li>保证可以快速版本集成。</li>
+</ul>
+<p>实现方式就是多分支 + 里程碑标记</p>
+<h2 id="多分支策略"><a href="#多分支策略" class="headerlink" title="多分支策略"></a>多分支策略</h2><h3 id="develop开发分支"><a href="#develop开发分支" class="headerlink" title="develop开发分支"></a>develop开发分支</h3><p>开发人员日常开发时使用的分支，它代表着最新的开发状态。大多数的时候，最新节点的版本是未经检验的、不可靠的。</p>
+<p>为了使develop的开发状态可控，根据代码提交频度，定期做一次集成+基本用例测试。如果可以引入单元测试，就更好了。</p>
+<h3 id="feature特性开发分支"><a href="#feature特性开发分支" class="headerlink" title="feature特性开发分支"></a>feature特性开发分支</h3><p>特性开发分支作为对开发分支的补充，保证不会因为特性开发的不完整，导致develop开发分支的不稳定。</p>
+<p>对大型功能的开发，或者试验性的开发，可以单独在本地检出feature分支进行开发。只要定期自己将develop分支的内容同步过来即可。</p>
+<h3 id="master-主干分支"><a href="#master-主干分支" class="headerlink" title="master 主干分支"></a>master 主干分支</h3><p>代表着稳定状态的分支。任何时候，master分支的最新节点应该都是随时可发布的。</p>
+<p>当完成一个里程碑时(完成版本发布、完成hotfix)，应该在主干分支上打上tag，同时将变更内容同步到开发分支。</p>
+<h3 id="release-版本发布分支"><a href="#release-版本发布分支" class="headerlink" title="release 版本发布分支"></a>release 版本发布分支</h3><p>实际一般主要用于发布测试版本，<strong>并提供开发人员在此分支上完成测试版本的bug修复</strong>。(如果是发布生产版本，一般直接取用某个测试版本即可)</p>
+<ul>
+<li><p>测试版本应该从开发版本的当前最新节点检出。为了尽可能保证该节点的稳定性，项目经理应该提前通知开发人员做好代码提交。</p>
+</li>
+<li><p>修复bug时，可采用敏捷方式。通过每日集成+回归测试（只测试最新标记为修复的bug），完成快速迭代。</p>
+</li>
+<li><p>bug修复完成后，由项目经理将，并打上tag分支合入主干，同时将主干内容同步到开发分支develop。 bug修复完成后，release分支也不再有存在价值，可以由项目经理删除。</p>
+</li>
+</ul>
+<h3 id="hotfix-生产版本bug修复分支"><a href="#hotfix-生产版本bug修复分支" class="headerlink" title="hotfix  生产版本bug修复分支"></a>hotfix  生产版本bug修复分支</h3><p>修复时，从主干分支上找到对应该生产版本的tag。基于此tag检出hotfix分支，完成修复后合入到主干master，同时打上tag，删除hotfix分支。（同时也别忘了将主干分支往开发分支做一次正向同步）</p>
+<p>后记：如果是基于git的版本控制，只有develop分支是必需长期存在的，其他分支事实上都是可以临时性质的。也就是表面上的单分支，也是我以前公司使用的策略（不过也不完全一致，因为完全的多分支管理也确实比较复杂）。</p>
+<h2 id="参考文档：主要是基于第一份参考文档。"><a href="#参考文档：主要是基于第一份参考文档。" class="headerlink" title="参考文档：主要是基于第一份参考文档。"></a>参考文档：主要是基于第一份参考文档。</h2><ol>
+<li><p>《一个成功的Git分支策略模型》</p>
+</li>
+<li><p>《有策略的进行分支》</p>
+</li>
+<li><p>《敏捷开发模式中的分支管理模式》</p>
+</li>
+<li><p>《敏捷开发模式中的分支管理模式实战与补遗》</p>
+</li>
+</ol>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/03/20/nodejs/appcan学习(一)mas基础/" itemprop="url">
-              
-                <span itemprop="name">appcan 学习 (一) mas基础</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-20T00:00:00+08:00"
-              content="2016-03-20" >
-          03-20
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/25/db/mysql优化/" rel="next" title="mysql优化案例">
+                <i class="fa fa-chevron-left"></i> mysql优化案例
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/25/tools/Git下的多分支开发策略/"
+     data-title="Git下的多分支开发策略"
+     data-content=""
+     data-url="http://mathscs.com/2016/05/25/tools/Git下的多分支开发策略/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -314,6 +482,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/25/tools/Git下的多分支开发策略/"
+           data-title="Git下的多分支开发策略" data-url="http://mathscs.com/2016/05/25/tools/Git下的多分支开发策略/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -333,8 +509,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/通用头像.png"
@@ -413,6 +598,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#日常开发中几个常见过程"><span class="nav-number">1.</span> <span class="nav-text">日常开发中几个常见过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支策略的核心任务"><span class="nav-number">2.</span> <span class="nav-text">分支策略的核心任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多分支策略"><span class="nav-number">3.</span> <span class="nav-text">多分支策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#develop开发分支"><span class="nav-number">3.1.</span> <span class="nav-text">develop开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#feature特性开发分支"><span class="nav-number">3.2.</span> <span class="nav-text">feature特性开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#master-主干分支"><span class="nav-number">3.3.</span> <span class="nav-text">master 主干分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#release-版本发布分支"><span class="nav-number">3.4.</span> <span class="nav-text">release 版本发布分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hotfix-生产版本bug修复分支"><span class="nav-number">3.5.</span> <span class="nav-text">hotfix  生产版本bug修复分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档：主要是基于第一份参考文档。"><span class="nav-number">4.</span> <span class="nav-text">参考文档：主要是基于第一份参考文档。</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -516,6 +712,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
