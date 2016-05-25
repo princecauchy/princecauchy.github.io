@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mathscs.com/categories/index.html</loc>
+    
+    <lastmod>2016-05-25T05:11:43.524Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://mathscs.com/hide/project/Simcere/%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF.html</loc>
     
     <lastmod>2016-05-24T10:05:28.035Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://mathscs.com/2016/03/20/nodejs/appcan%E5%AD%A6%E4%B9%A0(%E4%B8%80)mas%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2016-05-19T16:51:28.487Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mathscs.com/categories/index.html</loc>
-    
-    <lastmod>2016-05-19T15:57:56.640Z</lastmod>
     
   </url>
   
