@@ -102,15 +102,16 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="princecauchy's知识仓库">
-<meta property="og:url" content="http://mathscs.com/tags/git/index.html">
+<meta name="description" content="介绍hexo的一些配置方式,以及next主题的配置优化.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo配置">
+<meta property="og:url" content="http://mathscs.com/2016/05/25/hexo/hexo配置/index.html">
 <meta property="og:site_name" content="princecauchy's知识仓库">
-<meta property="og:description">
+<meta property="og:description" content="介绍hexo的一些配置方式,以及next主题的配置优化.">
+<meta property="og:updated_time" content="2016-05-25T06:48:13.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="princecauchy's知识仓库">
-<meta name="twitter:description">
+<meta name="twitter:title" content="hexo配置">
+<meta name="twitter:description" content="介绍hexo的一些配置方式,以及next主题的配置优化.">
 
 
 
@@ -128,7 +129,7 @@
   };
 </script>
 
-  <title> 标签: git | princecauchy's知识仓库 </title>
+  <title> hexo配置 | princecauchy's知识仓库 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -149,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,46 +268,179 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        git
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                hexo配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T14:35:47+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nexo/" itemprop="url" rel="index">
+                    <span itemprop="name">nexo</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nexo/NexT/" itemprop="url" rel="index">
+                    <span itemprop="name">NexT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/25/hexo/hexo配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/hexo/hexo配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>介绍hexo的一些配置方式,以及next主题的配置优化.<br><a id="more"></a></p>
+<h2 id="NexT主题设置"><a href="#NexT主题设置" class="headerlink" title="NexT主题设置"></a>NexT主题设置</h2><h3 id="设置文章页面自适应全屏"><a href="#设置文章页面自适应全屏" class="headerlink" title="设置文章页面自适应全屏"></a>设置文章页面自适应全屏</h3><p>参考<a href="https://github.com/myoss/hexo-theme-next/commit/ef87a48c169589aa1a512261abce967bfb3a6c9f" target="_blank" rel="external">https://github.com/myoss/hexo-theme-next/commit/ef87a48c169589aa1a512261abce967bfb3a6c9f</a></p>
+<p>修改主题_config.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+scheme: Pisces</span><br><span class="line">+pisces_layout: fluid</span><br></pre></td></tr></table></figure></p>
+<p>修改主题source/css/_schemes/Pisces/_layout.styl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+if $pisces_layout == &quot;fluid&quot;</span><br><span class="line">+  @media (min-width: 1300px) // 1366 * 768</span><br><span class="line">+    .header</span><br><span class="line">+    .container .main-inner</span><br><span class="line">+      width 1320px</span><br><span class="line">+    .content-wrap</span><br><span class="line">+      width 1066px</span><br><span class="line">+  @media (min-width: 1900px) // 1920 * 1200</span><br><span class="line">+    .header</span><br><span class="line">+    .container .main-inner</span><br><span class="line">+      width 1874px</span><br><span class="line">+    .content-wrap</span><br><span class="line">+      width 1620px</span><br><span class="line">+  .back-to-top</span><br><span class="line">+    right 20px</span><br></pre></td></tr></table></figure></p>
+<p>修改source/css/_variables/Pisces.styl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> // Back to top</span><br><span class="line"> $b2t-position-bottom          = 40px</span><br><span class="line">+</span><br><span class="line">+$pisces_layout                = hexo-config(&quot;pisces_layout&quot;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">theme-next.iissnan.com</a></li>
+</ol>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/05/21/tools/Git常用命令/" itemprop="url">
-              
-                <span itemprop="name">Git常用命令</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-21T00:00:00+08:00"
-              content="2016-05-21" >
-          05-21
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/23/nodejs/mogodb终端命令/" rel="next" title="mongodb终端命令">
+                <i class="fa fa-chevron-left"></i> mongodb终端命令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/25/hexo/hexo配置/"
+     data-title="hexo配置"
+     data-content=""
+     data-url="http://mathscs.com/2016/05/25/hexo/hexo配置/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -314,6 +448,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/25/hexo/hexo配置/"
+           data-title="hexo配置" data-url="http://mathscs.com/2016/05/25/hexo/hexo配置/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -333,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/通用头像.png"
@@ -413,6 +564,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NexT主题设置"><span class="nav-number">1.</span> <span class="nav-text">NexT主题设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置文章页面自适应全屏"><span class="nav-number">1.1.</span> <span class="nav-text">设置文章页面自适应全屏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -516,6 +678,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
