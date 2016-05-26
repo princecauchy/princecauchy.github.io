@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mathscs.com/2016/05/27/nodejs/express%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5/</loc>
+    
+    <lastmod>2016-05-26T16:18:05.219Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://mathscs.com/2016/05/25/hexo/hexo%E9%85%8D%E7%BD%AE/</loc>
     
-    <lastmod>2016-05-26T09:03:40.715Z</lastmod>
+    <lastmod>2016-05-26T09:03:40.000Z</lastmod>
     
   </url>
   
