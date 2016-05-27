@@ -102,16 +102,16 @@
 
 
 
-<meta name="description" content="本文详细介绍express框架的搭建和改造.">
+<meta name="description" content="本文详细介绍基于express的应用搭建和改造方法.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="express框架实践">
 <meta property="og:url" content="http://mathscs.com/2016/05/27/nodejs/express框架实践/index.html">
 <meta property="og:site_name" content="princecauchy's知识仓库">
-<meta property="og:description" content="本文详细介绍express框架的搭建和改造.">
-<meta property="og:updated_time" content="2016-05-26T16:18:05.219Z">
+<meta property="og:description" content="本文详细介绍基于express的应用搭建和改造方法.">
+<meta property="og:updated_time" content="2016-05-27T02:00:53.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express框架实践">
-<meta name="twitter:description" content="本文详细介绍express框架的搭建和改造.">
+<meta name="twitter:description" content="本文详细介绍基于express的应用搭建和改造方法.">
 
 
 
@@ -364,8 +364,8 @@
       
 
       
-        <p>本文详细介绍express框架的搭建和改造.<br><a id="more"></a></p>
-<h2 id="express初始化"><a href="#express初始化" class="headerlink" title="express初始化"></a>express初始化</h2><h3 id="安装express命令"><a href="#安装express命令" class="headerlink" title="安装express命令"></a>安装express命令</h3><p>使用以下命令安装 express：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express-generator -g</span><br></pre></td></tr></table></figure></p>
+        <p>本文详细介绍基于express的应用搭建和改造方法.<br><a id="more"></a></p>
+<h2 id="express初始化"><a href="#express初始化" class="headerlink" title="express初始化"></a>express初始化</h2><h3 id="安装express生成器"><a href="#安装express生成器" class="headerlink" title="安装express生成器"></a>安装express生成器</h3><p>使用以下命令安装 express：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express-generator -g</span><br></pre></td></tr></table></figure></p>
 <h3 id="生成express工程"><a href="#生成express工程" class="headerlink" title="生成express工程"></a>生成express工程</h3><p>以下语句在当前工作目录中创建名为 myapp 的 Express 应用程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ express myapp</span><br><span class="line">    create : myapp</span><br><span class="line">       create : myapp/package.json</span><br><span class="line">       create : myapp/app.js</span><br><span class="line">       create : myapp/public</span><br><span class="line">       create : myapp/public/javascripts</span><br><span class="line">       create : myapp/public/images</span><br><span class="line">       create : myapp/routes</span><br><span class="line">       create : myapp/routes/index.js</span><br><span class="line">       create : myapp/routes/users.js</span><br><span class="line">       create : myapp/public/stylesheets</span><br><span class="line">       create : myapp/public/stylesheets/style.css</span><br><span class="line">       create : myapp/views</span><br><span class="line">       create : myapp/views/index.jade</span><br><span class="line">       create : myapp/views/layout.jade</span><br><span class="line">       create : myapp/views/error.jade</span><br><span class="line">       create : myapp/bin</span><br><span class="line">       create : myapp/bin/www</span><br></pre></td></tr></table></figure></p>
 <p>然后安装依赖项:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd myapp</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p>
 <p>生成的应用程序具有以下目录结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.jade</span><br><span class="line">    ├── index.jade</span><br><span class="line">    └── layout.jade</span><br><span class="line"></span><br><span class="line">7 directories, 9 files</span><br></pre></td></tr></table></figure></p>
@@ -576,7 +576,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express初始化"><span class="nav-number">1.</span> <span class="nav-text">express初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装express命令"><span class="nav-number">1.1.</span> <span class="nav-text">安装express命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成express工程"><span class="nav-number">1.2.</span> <span class="nav-text">生成express工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动express工程"><span class="nav-number">1.3.</span> <span class="nav-text">启动express工程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express初始化"><span class="nav-number">1.</span> <span class="nav-text">express初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装express生成器"><span class="nav-number">1.1.</span> <span class="nav-text">安装express生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成express工程"><span class="nav-number">1.2.</span> <span class="nav-text">生成express工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动express工程"><span class="nav-number">1.3.</span> <span class="nav-text">启动express工程</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
