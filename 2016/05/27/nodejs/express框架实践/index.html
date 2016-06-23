@@ -108,7 +108,7 @@
 <meta property="og:url" content="http://mathscs.com/2016/05/27/nodejs/express框架实践/index.html">
 <meta property="og:site_name" content="princecauchy's知识仓库">
 <meta property="og:description" content="本文详细介绍基于express的应用搭建和改造方法.">
-<meta property="og:updated_time" content="2016-06-01T01:17:28.728Z">
+<meta property="og:updated_time" content="2016-06-05T13:50:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express框架实践">
 <meta name="twitter:description" content="本文详细介绍基于express的应用搭建和改造方法.">
@@ -225,7 +225,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="st-search-show-outputs">
+            <a href="#" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -240,19 +240,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', '3z1Kg1ogTM8b5WXcwyPd','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -427,8 +420,23 @@
 <h4 id="定义静态资源目录"><a href="#定义静态资源目录" class="headerlink" title="定义静态资源目录"></a>定义静态资源目录</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'../../lib/express'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Path to our public directory</span></span><br><span class="line"><span class="keyword">var</span> pub = __dirname + <span class="string">'/public'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setup middleware</span></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line">app.use(express.static(pub));</span><br></pre></td></tr></table></figure>
 <h3 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h3><p>markdown模版引擎使用.</p>
 <h4 id="注册md为视图模版引擎"><a href="#注册md为视图模版引擎" class="headerlink" title="注册md为视图模版引擎"></a>注册md为视图模版引擎</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> md = <span class="built_in">require</span>(<span class="string">'marked'</span>).parse;</span><br><span class="line"></span><br><span class="line"><span class="comment">// register .md as an engine in express view system</span></span><br><span class="line"></span><br><span class="line">app.engine(<span class="string">'md'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">path, options, fn</span>)</span>&#123;</span><br><span class="line">  fs.readFile(path, <span class="string">'utf8'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> fn(err);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> html = md(str);</span><br><span class="line">      html = html.replace(<span class="regexp">/\&#123;([^&#125;]+)\&#125;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">_, name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> options[name] || <span class="string">''</span>;</span><br><span class="line">      &#125;);</span><br><span class="line">      fn(<span class="literal">null</span>, html);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">      fn(err);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.set(<span class="string">'views'</span>, __dirname + <span class="string">'/views'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// make it the default so we dont need .md</span></span><br><span class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'md'</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="multipart"><a href="#multipart" class="headerlink" title="multipart"></a>multipart</h3><p>上传文件.</p>
+<h3 id="multipart"><a href="#multipart" class="headerlink" title="multipart"></a>multipart</h3><ul>
+<li>详见：<a href="https://github.com/andrewrk/node-multiparty" target="_blank" rel="external">andrewrk/node-multiparty</a></li>
+</ul>
+<p>处理上传文件.</p>
 <h4 id="接收上传的文件的代码"><a href="#接收上传的文件的代码" class="headerlink" title="接收上传的文件的代码"></a>接收上传的文件的代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// create a form to begin parsing</span></span><br><span class="line">  <span class="keyword">var</span> form = <span class="keyword">new</span> multiparty.Form();</span><br><span class="line">  <span class="keyword">var</span> image;</span><br><span class="line">  <span class="keyword">var</span> title;</span><br><span class="line"></span><br><span class="line">  form.on(<span class="string">'error'</span>, next);</span><br><span class="line">  form.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    res.send(format(<span class="string">'\nuploaded %s (%d Kb) as %s'</span></span><br><span class="line">      , image.filename</span><br><span class="line">      , image.size / <span class="number">1024</span> | <span class="number">0</span></span><br><span class="line">      , title));</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// listen on field event for title</span></span><br><span class="line">  form.on(<span class="string">'field'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name, val</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name !== <span class="string">'title'</span>) <span class="keyword">return</span>;</span><br><span class="line">    title = val;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// listen on part event for image file</span></span><br><span class="line">  form.on(<span class="string">'part'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">part</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!part.filename) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (part.name !== <span class="string">'image'</span>) <span class="keyword">return</span> part.resume();</span><br><span class="line">    image = &#123;&#125;;</span><br><span class="line">    image.filename = part.filename;</span><br><span class="line">    image.size = <span class="number">0</span>;</span><br><span class="line">    part.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">buf</span>)</span>&#123;</span><br><span class="line">      image.size += buf.length;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// parse the form</span></span><br><span class="line">  form.parse(req);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>form.on()</code>可以绑定error,field,part,close四个事件. </p>
+<ul>
+<li>error 处理错误</li>
+<li>close 解析结束后最后触发</li>
+<li>field 解析text类型的域</li>
+<li>part 解析file类型的域</li>
+</ul>
+<p>也可以这样写:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (req.url === <span class="string">'/upload'</span> &amp;&amp; req.method === <span class="string">'POST'</span>) &#123;</span><br><span class="line">  <span class="comment">// parse a file upload</span></span><br><span class="line">  <span class="keyword">var</span> form = <span class="keyword">new</span> multiparty.Form();</span><br><span class="line"></span><br><span class="line">  form.parse(req, <span class="function"><span class="keyword">function</span>(<span class="params">err, fields, files</span>) </span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'content-type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">    res.write(<span class="string">'received upload:\n\n'</span>);</span><br><span class="line">    res.end(util.inspect(&#123;fields: fields, files: files&#125;));</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="multi-router"><a href="#multi-router" class="headerlink" title="multi-router"></a>multi-router</h3><p>多路由分发</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line">app.use(<span class="string">'/api/v1'</span>, <span class="built_in">require</span>(<span class="string">'./controllers/api_v1'</span>));</span><br><span class="line">app.use(<span class="string">'/api/v2'</span>, <span class="built_in">require</span>(<span class="string">'./controllers/api_v2'</span>));</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello form root route.'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//api_v1</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'../../..'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> apiv1 = express.Router();</span><br><span class="line"></span><br><span class="line">apiv1.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello from APIv1 root route.'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">apiv1.get(<span class="string">'/users'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'List of APIv1 users.'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = apiv1;</span><br></pre></td></tr></table></figure>
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>自动读取controller文件夹下的所有文件,注册controller.<br>用的方式不是router(express.Router()),而是在每个controller文件中定义独立app(=express()),使用parent.use(app);<br>参考:<a href="http://www.expressjs.com.cn/4x/api.html#app.use" target="_blank" rel="external">app.use</a></p>
 
       
     </div>
@@ -633,7 +641,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express初始化"><span class="nav-number">1.</span> <span class="nav-text">express初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装express生成器"><span class="nav-number">1.1.</span> <span class="nav-text">安装express生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成express工程"><span class="nav-number">1.2.</span> <span class="nav-text">生成express工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动express工程"><span class="nav-number">1.3.</span> <span class="nav-text">启动express工程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express框架概念汇总"><span class="nav-number">2.</span> <span class="nav-text">express框架概念汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置环境"><span class="nav-number">2.1.</span> <span class="nav-text">*设置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置系统环境变量"><span class="nav-number">2.1.1.</span> <span class="nav-text">设置系统环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时指定NODE-ENV"><span class="nav-number">2.1.2.</span> <span class="nav-text">运行时指定NODE_ENV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码中取值NODE-ENV"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码中取值NODE_ENV</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件"><span class="nav-number">2.2.</span> <span class="nav-text">*中间件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-examples-一-session-cookie"><span class="nav-number">3.</span> <span class="nav-text">express examples(一)(session,cookie)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auth-设置session"><span class="nav-number">3.1.</span> <span class="nav-text">auth (设置session)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问登录页"><span class="nav-number">3.1.1.</span> <span class="nav-text">访问登录页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录接口"><span class="nav-number">3.1.2.</span> <span class="nav-text">登录接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问受限页面"><span class="nav-number">3.1.3.</span> <span class="nav-text">访问受限页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出接口"><span class="nav-number">3.1.4.</span> <span class="nav-text">登出接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#big-view-jade视图引擎"><span class="nav-number">3.2.</span> <span class="nav-text">big-view (jade视图引擎)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求资源"><span class="nav-number">3.2.1.</span> <span class="nav-text">请求资源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-negotiation"><span class="nav-number">3.3.</span> <span class="nav-text">content-negotiation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#demo"><span class="nav-number">3.3.1.</span> <span class="nav-text">demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考地址"><span class="nav-number">3.3.2.</span> <span class="nav-text">参考地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookies"><span class="nav-number">3.4.</span> <span class="nav-text">cookies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读取cookies"><span class="nav-number">3.4.1.</span> <span class="nav-text">读取cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存cookies"><span class="nav-number">3.4.2.</span> <span class="nav-text">保存cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除cookies"><span class="nav-number">3.4.3.</span> <span class="nav-text">清除cookies</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录日志"><span class="nav-number">3.5.</span> <span class="nav-text">*记录日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义日志格式"><span class="nav-number">3.5.1.</span> <span class="nav-text">自定义日志格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-sessions"><span class="nav-number">3.6.</span> <span class="nav-text">cookie-sessions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-examples-二"><span class="nav-number">4.</span> <span class="nav-text">express examples(二)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#downloads"><span class="nav-number">4.1.</span> <span class="nav-text">downloads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问下载地址"><span class="nav-number">4.1.1.</span> <span class="nav-text">访问下载地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ejs视图模版"><span class="nav-number">4.2.</span> <span class="nav-text">ejs视图模版</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ejs模版使用"><span class="nav-number">4.2.1.</span> <span class="nav-text">ejs模版使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error"><span class="nav-number">4.3.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error-page"><span class="nav-number">4.4.</span> <span class="nav-text">error-page</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面"><span class="nav-number">4.4.1.</span> <span class="nav-text">404页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#403、500错误处理页面"><span class="nav-number">4.4.2.</span> <span class="nav-text">403、500错误处理页面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#expose-data-to-client"><span class="nav-number">4.5.</span> <span class="nav-text">expose-data-to-client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jade"><span class="nav-number">4.6.</span> <span class="nav-text">jade</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jade模版"><span class="nav-number">4.6.1.</span> <span class="nav-text">jade模版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义静态资源目录"><span class="nav-number">4.6.2.</span> <span class="nav-text">定义静态资源目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown"><span class="nav-number">4.7.</span> <span class="nav-text">markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册md为视图模版引擎"><span class="nav-number">4.7.1.</span> <span class="nav-text">注册md为视图模版引擎</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multipart"><span class="nav-number">4.8.</span> <span class="nav-text">multipart</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接收上传的文件的代码"><span class="nav-number">4.8.1.</span> <span class="nav-text">接收上传的文件的代码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express初始化"><span class="nav-number">1.</span> <span class="nav-text">express初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装express生成器"><span class="nav-number">1.1.</span> <span class="nav-text">安装express生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成express工程"><span class="nav-number">1.2.</span> <span class="nav-text">生成express工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动express工程"><span class="nav-number">1.3.</span> <span class="nav-text">启动express工程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express框架概念汇总"><span class="nav-number">2.</span> <span class="nav-text">express框架概念汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置环境"><span class="nav-number">2.1.</span> <span class="nav-text">*设置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置系统环境变量"><span class="nav-number">2.1.1.</span> <span class="nav-text">设置系统环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时指定NODE-ENV"><span class="nav-number">2.1.2.</span> <span class="nav-text">运行时指定NODE_ENV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码中取值NODE-ENV"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码中取值NODE_ENV</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件"><span class="nav-number">2.2.</span> <span class="nav-text">*中间件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-examples-一-session-cookie"><span class="nav-number">3.</span> <span class="nav-text">express examples(一)(session,cookie)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auth-设置session"><span class="nav-number">3.1.</span> <span class="nav-text">auth (设置session)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问登录页"><span class="nav-number">3.1.1.</span> <span class="nav-text">访问登录页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录接口"><span class="nav-number">3.1.2.</span> <span class="nav-text">登录接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问受限页面"><span class="nav-number">3.1.3.</span> <span class="nav-text">访问受限页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出接口"><span class="nav-number">3.1.4.</span> <span class="nav-text">登出接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#big-view-jade视图引擎"><span class="nav-number">3.2.</span> <span class="nav-text">big-view (jade视图引擎)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求资源"><span class="nav-number">3.2.1.</span> <span class="nav-text">请求资源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-negotiation"><span class="nav-number">3.3.</span> <span class="nav-text">content-negotiation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#demo"><span class="nav-number">3.3.1.</span> <span class="nav-text">demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考地址"><span class="nav-number">3.3.2.</span> <span class="nav-text">参考地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookies"><span class="nav-number">3.4.</span> <span class="nav-text">cookies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读取cookies"><span class="nav-number">3.4.1.</span> <span class="nav-text">读取cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存cookies"><span class="nav-number">3.4.2.</span> <span class="nav-text">保存cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除cookies"><span class="nav-number">3.4.3.</span> <span class="nav-text">清除cookies</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录日志"><span class="nav-number">3.5.</span> <span class="nav-text">*记录日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义日志格式"><span class="nav-number">3.5.1.</span> <span class="nav-text">自定义日志格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-sessions"><span class="nav-number">3.6.</span> <span class="nav-text">cookie-sessions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-examples-二"><span class="nav-number">4.</span> <span class="nav-text">express examples(二)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#downloads"><span class="nav-number">4.1.</span> <span class="nav-text">downloads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问下载地址"><span class="nav-number">4.1.1.</span> <span class="nav-text">访问下载地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ejs视图模版"><span class="nav-number">4.2.</span> <span class="nav-text">ejs视图模版</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ejs模版使用"><span class="nav-number">4.2.1.</span> <span class="nav-text">ejs模版使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error"><span class="nav-number">4.3.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error-page"><span class="nav-number">4.4.</span> <span class="nav-text">error-page</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面"><span class="nav-number">4.4.1.</span> <span class="nav-text">404页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#403、500错误处理页面"><span class="nav-number">4.4.2.</span> <span class="nav-text">403、500错误处理页面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#expose-data-to-client"><span class="nav-number">4.5.</span> <span class="nav-text">expose-data-to-client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jade"><span class="nav-number">4.6.</span> <span class="nav-text">jade</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jade模版"><span class="nav-number">4.6.1.</span> <span class="nav-text">jade模版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义静态资源目录"><span class="nav-number">4.6.2.</span> <span class="nav-text">定义静态资源目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown"><span class="nav-number">4.7.</span> <span class="nav-text">markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册md为视图模版引擎"><span class="nav-number">4.7.1.</span> <span class="nav-text">注册md为视图模版引擎</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multipart"><span class="nav-number">4.8.</span> <span class="nav-text">multipart</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接收上传的文件的代码"><span class="nav-number">4.8.1.</span> <span class="nav-text">接收上传的文件的代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-router"><span class="nav-number">4.9.</span> <span class="nav-text">multi-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC"><span class="nav-number">4.10.</span> <span class="nav-text">MVC</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -781,6 +789,135 @@
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
   
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
