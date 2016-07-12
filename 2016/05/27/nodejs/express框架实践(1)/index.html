@@ -1,0 +1,1016 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nodejs,express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文详细介绍基于express的应用搭建和改造方法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express框架实践(1)">
+<meta property="og:url" content="http://mathscs.com/2016/05/27/nodejs/express框架实践(1)/index.html">
+<meta property="og:site_name" content="princecauchy's知识仓库">
+<meta property="og:description" content="本文详细介绍基于express的应用搭建和改造方法.">
+<meta property="og:updated_time" content="2016-07-12T13:57:47.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express框架实践(1)">
+<meta name="twitter:description" content="本文详细介绍基于express的应用搭建和改造方法.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> express框架实践(1) | princecauchy's知识仓库 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">princecauchy's知识仓库</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                express框架实践(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-27T00:00:22+08:00" content="2016-05-27">
+              2016-05-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/27/nodejs/express框架实践(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/27/nodejs/express框架实践(1)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/27/nodejs/express框架实践(1)/" class="leancloud_visitors" data-flag-title="express框架实践(1)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文详细介绍基于express的应用搭建和改造方法.</p>
+<a id="more"></a>
+<h2 id="express初始化"><a href="#express初始化" class="headerlink" title="express初始化"></a>express初始化</h2><h3 id="安装express生成器"><a href="#安装express生成器" class="headerlink" title="安装express生成器"></a>安装express生成器</h3><p>使用以下命令安装 express：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express-generator -g</span><br></pre></td></tr></table></figure></p>
+<h3 id="生成express工程"><a href="#生成express工程" class="headerlink" title="生成express工程"></a>生成express工程</h3><p>以下语句在当前工作目录中创建名为 myapp 的 Express 应用程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ express myapp</span><br><span class="line">    create : myapp</span><br><span class="line">       create : myapp/package.json</span><br><span class="line">       create : myapp/app.js</span><br><span class="line">       create : myapp/public</span><br><span class="line">       create : myapp/public/javascripts</span><br><span class="line">       create : myapp/public/images</span><br><span class="line">       create : myapp/routes</span><br><span class="line">       create : myapp/routes/index.js</span><br><span class="line">       create : myapp/routes/users.js</span><br><span class="line">       create : myapp/public/stylesheets</span><br><span class="line">       create : myapp/public/stylesheets/style.css</span><br><span class="line">       create : myapp/views</span><br><span class="line">       create : myapp/views/index.jade</span><br><span class="line">       create : myapp/views/layout.jade</span><br><span class="line">       create : myapp/views/error.jade</span><br><span class="line">       create : myapp/bin</span><br><span class="line">       create : myapp/bin/www</span><br></pre></td></tr></table></figure></p>
+<p>然后安装依赖项:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd myapp</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p>
+<p>生成的应用程序具有以下目录结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.jade</span><br><span class="line">    ├── index.jade</span><br><span class="line">    └── layout.jade</span><br><span class="line"></span><br><span class="line">7 directories, 9 files</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动express工程"><a href="#启动express工程" class="headerlink" title="启动express工程"></a>启动express工程</h3><p>在 MacOS 或 Linux 上，采用以下命令运行此应用程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ DEBUG=myapp:* npm start</span><br></pre></td></tr></table></figure></p>
+<p>在 Windows 上，使用以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; set DEBUG=myapp:* &amp; npm start</span><br></pre></td></tr></table></figure></p>
+<p>然后在浏览器中装入 <a href="http://localhost:3000/" target="_blank" rel="external">http://localhost:3000/</a> 以访问此应用程序。</p>
+<h2 id="express框架概念汇总"><a href="#express框架概念汇总" class="headerlink" title="express框架概念汇总"></a>express框架概念汇总</h2><h3 id="设置环境"><a href="#设置环境" class="headerlink" title="*设置环境"></a>*设置环境</h3><p>NODE_ENV</p>
+<h4 id="设置系统环境变量"><a href="#设置系统环境变量" class="headerlink" title="设置系统环境变量"></a>设置系统环境变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">linux &amp; mac: export NODE_ENV=production</span><br><span class="line">windows: set NODE_ENV=production</span><br></pre></td></tr></table></figure>
+<h4 id="运行时指定NODE-ENV"><a href="#运行时指定NODE-ENV" class="headerlink" title="运行时指定NODE_ENV"></a>运行时指定NODE_ENV</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ NODE_ENV=dev node cookies</span><br></pre></td></tr></table></figure>
+<h4 id="代码中取值NODE-ENV"><a href="#代码中取值NODE-ENV" class="headerlink" title="代码中取值NODE_ENV"></a>代码中取值NODE_ENV</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'test'</span> != process.env.NODE_ENV) app.use(logger(<span class="string">':method :url'</span>));</span><br></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'env'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>根据NODE_ENV设置配置变量:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 所有环境</span></span><br><span class="line">app.set(<span class="string">'title'</span>, <span class="string">'My Application'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只用于开发环境</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'development'</span> == app.get(<span class="string">'env'</span>)) &#123;</span><br><span class="line">  app.set(<span class="string">'db uri'</span>, <span class="string">'localhost/dev'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只用于生产环境</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'production'</span> == app.get(<span class="string">'env'</span>)) &#123;</span><br><span class="line">  app.set(<span class="string">'db uri'</span>, <span class="string">'n.n.n.n/prod'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="*中间件"></a>*中间件</h3><p><strong>应用级中间件</strong>、<strong>路由级中间件</strong>以及<strong>错误处理中间件</strong>:<a href="http://www.expressjs.com.cn/guide/using-middleware.html" target="_blank" rel="external">middleware</a></p>
+<h2 id="express-examples-一-session-cookie"><a href="#express-examples-一-session-cookie" class="headerlink" title="express examples(一)(session,cookie)"></a>express examples(一)(session,cookie)</h2><p>从examples中学习session,cookie的插件处理方法.<br>examples来自: <a href="https://github.com/expressjs/express/tree/master/examples" target="_blank" rel="external">express/examples</a></p>
+<h3 id="auth-设置session"><a href="#auth-设置session" class="headerlink" title="auth (设置session)"></a>auth (设置session)</h3><p>设置session.</p>
+<h4 id="访问登录页"><a href="#访问登录页" class="headerlink" title="访问登录页"></a>访问登录页</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>);</span><br><span class="line">...</span><br><span class="line">app.get(<span class="string">'/login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.render(<span class="string">'login'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>app.set(&#39;view engine&#39;, &#39;ejs&#39;)</code>定义了使用的视图模版引擎为ejs.<br><code>res.render(&#39;login&#39;)</code>表示返回login.ejs页面.</p>
+<h4 id="登录接口"><a href="#登录接口" class="headerlink" title="登录接口"></a>登录接口</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> session = <span class="built_in">require</span>(<span class="string">'express-session'</span>);</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">app.use(session(&#123;</span><br><span class="line">  resave: <span class="literal">false</span>, <span class="comment">// don't save session if unmodified</span></span><br><span class="line">  saveUninitialized: <span class="literal">false</span>, <span class="comment">// don't create session until something stored</span></span><br><span class="line">  secret: <span class="string">'shhhh, very secret'</span></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">app.post(<span class="string">'/login'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  authenticate(req.body.username, req.body.password, <span class="function"><span class="keyword">function</span>(<span class="params">err, user</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (user) &#123;</span><br><span class="line">      <span class="comment">// Regenerate session when signing in</span></span><br><span class="line">      <span class="comment">// to prevent fixation</span></span><br><span class="line">      req.session.regenerate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// Store the user's primary key</span></span><br><span class="line">        <span class="comment">// in the session store to be retrieved,</span></span><br><span class="line">        <span class="comment">// or in this case the entire user object</span></span><br><span class="line">        req.session.user = user;</span><br><span class="line">        req.session.success = <span class="string">'Authenticated as '</span> + user.name</span><br><span class="line">          + <span class="string">' click to &lt;a href="/logout"&gt;logout&lt;/a&gt;. '</span></span><br><span class="line">          + <span class="string">' You may now access &lt;a href="/restricted"&gt;/restricted&lt;/a&gt;.'</span>;</span><br><span class="line">        res.redirect(<span class="string">'back'</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      req.session.error = <span class="string">'Authentication failed, please check your '</span></span><br><span class="line">        + <span class="string">' username and password.'</span></span><br><span class="line">        + <span class="string">' (use "tj" and "foobar")'</span>;</span><br><span class="line">      res.redirect(<span class="string">'/login'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>req.session.regenerate(cb)</code>重新生成session,在返回页面的报文中,会在用户浏览器中设置connect.sid这个cookie变量.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Authenticate using our plain-object database of doom!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">authenticate</span>(<span class="params">name, pass, fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">module</span>.parent) <span class="built_in">console</span>.log(<span class="string">'authenticating %s:%s'</span>, name, pass);</span><br><span class="line">  <span class="keyword">var</span> user = users[name];</span><br><span class="line">  <span class="comment">// query the db for the given username</span></span><br><span class="line">  <span class="keyword">if</span> (!user) <span class="keyword">return</span> fn(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'cannot find user'</span>));</span><br><span class="line">  <span class="comment">// apply the same algorithm to the POSTed password, applying</span></span><br><span class="line">  <span class="comment">// the hash against the pass / salt, if there is a match we</span></span><br><span class="line">  <span class="comment">// found the user</span></span><br><span class="line">  hash(pass, user.salt, <span class="function"><span class="keyword">function</span>(<span class="params">err, hash</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> fn(err);</span><br><span class="line">    <span class="keyword">if</span> (hash == user.hash) <span class="keyword">return</span> fn(<span class="literal">null</span>, user);</span><br><span class="line">    fn(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'invalid password'</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="访问受限页面"><a href="#访问受限页面" class="headerlink" title="访问受限页面"></a>访问受限页面</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">restrict</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (req.session.user) &#123;</span><br><span class="line">    next();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    req.session.error = <span class="string">'Access denied!'</span>;</span><br><span class="line">    res.redirect(<span class="string">'/login'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/restricted'</span>, restrict, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">'Wahoo! restricted area, click to &lt;a href="/logout"&gt;logout&lt;/a&gt;'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="登出接口"><a href="#登出接口" class="headerlink" title="登出接口"></a>登出接口</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/logout'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// destroy the user's session to log them out</span></span><br><span class="line">  <span class="comment">// will be re-created next request</span></span><br><span class="line">  req.session.destroy(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    res.redirect(<span class="string">'/'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>req.session.destroy()</code>销毁session.</p>
+<h3 id="big-view-jade视图引擎"><a href="#big-view-jade视图引擎" class="headerlink" title="big-view (jade视图引擎)"></a>big-view (jade视图引擎)</h3><h4 id="请求资源"><a href="#请求资源" class="headerlink" title="请求资源"></a>请求资源</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.set(<span class="string">'views'</span>, __dirname);</span><br><span class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'jade'</span>);</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.render(<span class="string">'pets'</span>, &#123; pets: pets &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>pets.jade页面代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">style.</span><br><span class="line">  body &#123;</span><br><span class="line">    padding: 50px;</span><br><span class="line">    font: 16px &quot;Helvetica Neue&quot;, Helvetica;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">table</span><br><span class="line">  for pet in pets</span><br><span class="line">    tr</span><br><span class="line">      td= pet.name</span><br><span class="line">      td= pet.age</span><br><span class="line">      td= pet.species</span><br></pre></td></tr></table></figure></p>
+<h3 id="content-negotiation"><a href="#content-negotiation" class="headerlink" title="content-negotiation"></a>content-negotiation</h3><p>根据请求头的Accept字段返回不同的内容.<br>header.Accept:</p>
+<ul>
+<li>text/html 返回html结果样式</li>
+<li>text/plain 返回text结果样式</li>
+<li>application/json 返回json结果样式</li>
+</ul>
+<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// so either you can deal with different types of formatting</span></span><br><span class="line"><span class="comment">// for expected response in index.js</span></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.format(&#123;</span><br><span class="line">    html: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res.send(<span class="string">'&lt;ul&gt;'</span> + users.map(<span class="function"><span class="keyword">function</span>(<span class="params">user</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;li&gt;'</span> + user.name + <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">      &#125;).join(<span class="string">''</span>) + <span class="string">'&lt;/ul&gt;'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    text: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res.send(users.map(<span class="function"><span class="keyword">function</span>(<span class="params">user</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">' - '</span> + user.name + <span class="string">'\n'</span>;</span><br><span class="line">      &#125;).join(<span class="string">''</span>));</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    json: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      res.json(users);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h4><p><a href="http://www.expressjs.com.cn/4x/api.html#res.format" target="_blank" rel="external"> http://www.expressjs.com.cn/4x/api.html#res.format </a></p>
+<h3 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h3><p>向浏览器中设置cookies.</p>
+<h4 id="读取cookies"><a href="#读取cookies" class="headerlink" title="读取cookies"></a>读取cookies</h4><p><code>req.cookies.remember</code>读取名为remember的cookies变量.</p>
+<h4 id="保存cookies"><a href="#保存cookies" class="headerlink" title="保存cookies"></a>保存cookies</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>);</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// parses request cookies, populating</span></span><br><span class="line"><span class="comment">// req.cookies and req.signedCookies</span></span><br><span class="line"><span class="comment">// when the secret is passed, used</span></span><br><span class="line"><span class="comment">// for signing the cookies.</span></span><br><span class="line">app.use(cookieParser(<span class="string">'my secret here'</span>));</span><br><span class="line"><span class="comment">// parses x-www-form-urlencoded</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: <span class="literal">false</span> &#125;));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">app.post(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> minute = <span class="number">60000</span>;</span><br><span class="line">  <span class="keyword">if</span> (req.body.remember) res.cookie(<span class="string">'remember'</span>, <span class="number">1</span>, &#123; maxAge: minute &#125;);</span><br><span class="line">  res.redirect(<span class="string">'back'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>req.body.remember</code> 获取表单参数;(详见:<a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">body-parser</a>)<br><code>res.cookie(&#39;remember&#39;, 1, { maxAge: minute })</code> 设置名为remember的cookies变量,生存时间为1分钟.</p>
+<h4 id="清除cookies"><a href="#清除cookies" class="headerlink" title="清除cookies"></a>清除cookies</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/forget'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.clearCookie(<span class="string">'remember'</span>);</span><br><span class="line">  res.redirect(<span class="string">'back'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>res.clearCookie(&#39;remember&#39;);</code>清除名为remember的cookies变量.</p>
+<h3 id="记录日志"><a href="#记录日志" class="headerlink" title="*记录日志"></a>*记录日志</h3><p>require(“morgan”)</p>
+<h4 id="自定义日志格式"><a href="#自定义日志格式" class="headerlink" title="自定义日志格式"></a>自定义日志格式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</span><br><span class="line">app.use(logger(<span class="string">':method :url'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="cookie-sessions"><a href="#cookie-sessions" class="headerlink" title="cookie-sessions"></a>cookie-sessions</h3><p>同时支持设置cookie和session的插件.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+            <a href="/tags/express/" rel="tag">#express</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/25/tools/Git下的多分支开发策略/" rel="next" title="Git下的多分支开发策略">
+                <i class="fa fa-chevron-left"></i> Git下的多分支开发策略
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/12/nodejs/express框架实践(2)/" rel="prev" title="express框架实践(2)">
+                express框架实践(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/27/nodejs/express框架实践(1)/"
+     data-title="express框架实践(1)"
+     data-content=""
+     data-url="http://mathscs.com/2016/05/27/nodejs/express框架实践(1)/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/27/nodejs/express框架实践(1)/"
+           data-title="express框架实践(1)" data-url="http://mathscs.com/2016/05/27/nodejs/express框架实践(1)/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/通用头像.png"
+               alt="princecauchy" />
+          <p class="site-author-name" itemprop="name">princecauchy</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/princecauchy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/princecauchy" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/princecauchy" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express初始化"><span class="nav-number">1.</span> <span class="nav-text">express初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装express生成器"><span class="nav-number">1.1.</span> <span class="nav-text">安装express生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成express工程"><span class="nav-number">1.2.</span> <span class="nav-text">生成express工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动express工程"><span class="nav-number">1.3.</span> <span class="nav-text">启动express工程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express框架概念汇总"><span class="nav-number">2.</span> <span class="nav-text">express框架概念汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置环境"><span class="nav-number">2.1.</span> <span class="nav-text">*设置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置系统环境变量"><span class="nav-number">2.1.1.</span> <span class="nav-text">设置系统环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时指定NODE-ENV"><span class="nav-number">2.1.2.</span> <span class="nav-text">运行时指定NODE_ENV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码中取值NODE-ENV"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码中取值NODE_ENV</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件"><span class="nav-number">2.2.</span> <span class="nav-text">*中间件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-examples-一-session-cookie"><span class="nav-number">3.</span> <span class="nav-text">express examples(一)(session,cookie)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auth-设置session"><span class="nav-number">3.1.</span> <span class="nav-text">auth (设置session)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问登录页"><span class="nav-number">3.1.1.</span> <span class="nav-text">访问登录页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录接口"><span class="nav-number">3.1.2.</span> <span class="nav-text">登录接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问受限页面"><span class="nav-number">3.1.3.</span> <span class="nav-text">访问受限页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出接口"><span class="nav-number">3.1.4.</span> <span class="nav-text">登出接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#big-view-jade视图引擎"><span class="nav-number">3.2.</span> <span class="nav-text">big-view (jade视图引擎)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求资源"><span class="nav-number">3.2.1.</span> <span class="nav-text">请求资源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-negotiation"><span class="nav-number">3.3.</span> <span class="nav-text">content-negotiation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#demo"><span class="nav-number">3.3.1.</span> <span class="nav-text">demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考地址"><span class="nav-number">3.3.2.</span> <span class="nav-text">参考地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookies"><span class="nav-number">3.4.</span> <span class="nav-text">cookies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读取cookies"><span class="nav-number">3.4.1.</span> <span class="nav-text">读取cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存cookies"><span class="nav-number">3.4.2.</span> <span class="nav-text">保存cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除cookies"><span class="nav-number">3.4.3.</span> <span class="nav-text">清除cookies</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录日志"><span class="nav-number">3.5.</span> <span class="nav-text">*记录日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义日志格式"><span class="nav-number">3.5.1.</span> <span class="nav-text">自定义日志格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-sessions"><span class="nav-number">3.6.</span> <span class="nav-text">cookie-sessions</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">princecauchy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mathscs"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("GSeXKVXvj8loILbRHsri59Mk-gzGzoHsz", "VfsnqqayJKxTPGSs9vuqrHeb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

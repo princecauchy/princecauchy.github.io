@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://mathscs.com/2016/05/27/nodejs/express%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5/</loc>
+    <loc>http://mathscs.com/2016/07/12/nodejs/express%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5(3)/</loc>
     
-    <lastmod>2016-07-11T15:32:59.683Z</lastmod>
+    <lastmod>2016-07-12T13:59:57.999Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mathscs.com/2016/07/12/nodejs/express%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5(2)/</loc>
+    
+    <lastmod>2016-07-12T13:59:23.203Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://mathscs.com/2016/05/27/nodejs/express%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5(1)/</loc>
+    
+    <lastmod>2016-07-12T13:57:47.908Z</lastmod>
     
   </url>
   
